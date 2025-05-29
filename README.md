@@ -145,16 +145,8 @@ python experiments/exp04_full_evaluation.py
 ### Performance Metrics
 | Method | Dataset | ROC-AUC | Precision | Recall | F1-Score |
 |--------|---------|---------|-----------|---------|----------|
-| Static GNN | Synthetic | 0.82 | 0.75 | 0.69 | 0.72 |
-| **Temporal-GNN** | Synthetic | **0.94** | **0.89** | **0.91** | **0.90** |
-| Static GNN | Bitcoin | 0.78 | 0.71 | 0.66 | 0.68 |
-| **Temporal-GNN** | Bitcoin | **0.87** | **0.82** | **0.84** | **0.83** |
 
 ### Key Findings
-- ⚡ **15% improvement** in anomaly detection accuracy over static methods
-- 🚀 **Real-time processing** capability (sub-second inference)
-- 🎯 **Early detection** of anomalies within 3-5 time steps
-- 📊 **Robust performance** across different network types and sizes
 
 ## 🗂️ Project Structure
 
@@ -314,7 +306,7 @@ If you use this work in your research, please cite:
 ```bibtex
 @misc{temporal-gnn-2025,
   title={Temporal-GNN: Real-time Anomaly Detection in Dynamic Networks},
-  author={[Your Name]},
+  author={[Mohammad Dindoost]},
   year={2025},
   url={https://github.com/mdindoost/temporal-gnn}
 }
