@@ -1,0 +1,678 @@
+#!/usr/bin/env python3
+"""
+Temporal Memory Module Implementation
+Based on TGN, DyRep, and JODIE insights for anomaly detection
+
+This module implements:
+1. NodeMemoryModule (TGN-inspired) - Track individual node patterns
+2. GraphMemoryModule (TGN-inspired) - Track global graph patterns  
+3. TemporalEncoder (DyRep-inspired) - Multi-scale temporal encoding
+4. TrajectoryPredictor (JODIE-inspired) - Predict future states
+"""
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch_geometric.nn import GCNConv, global_mean_pool
+import numpy as np
+import math
+from typing import Dict, List, Tuple, Optional
+from collections import defaultdict, deque
+
+class Time2Vec(nn.Module):
+    """
+    Time2Vec encoding from TGN paper
+    Encodes time differences with learnable periodic and non-periodic components
+    """
+    def __init__(self, time_dim: int):
+        super(Time2Vec, self).__init__()
+        self.time_dim = time_dim
+        # First dimension is linear (non-periodic)
+        self.linear_layer = nn.Linear(1, 1)
+        # Remaining dimensions are periodic
+        if time_dim > 1:
+            self.periodic_layers = nn.Linear(1, time_dim - 1)
+    
+    def forward(self, time_delta: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            time_delta: (batch_size, 1) tensor of time differences
+        Returns:
+            time_encoding: (batch_size, time_dim) temporal encoding
+        """
+        batch_size = time_delta.shape[0]
+        
+        # Linear component
+        linear_time = self.linear_layer(time_delta)  # (batch_size, 1)
+        
+        if self.time_dim == 1:
+            return linear_time
+        
+        # Periodic components
+        periodic_time = torch.sin(self.periodic_layers(time_delta))  # (batch_size, time_dim-1)
+        
+        # Concatenate linear and periodic
+        time_encoding = torch.cat([linear_time, periodic_time], dim=1)
+        return time_encoding
+
+class NodeMemoryModule(nn.Module):
+    """
+    TGN-inspired node memory module for tracking normal behavior patterns
+    Each node maintains a memory vector that gets updated with new observations
+    """
+    def __init__(self, num_nodes: int, memory_dim: int, message_dim: int):
+        super(NodeMemoryModule, self).__init__()
+        self.num_nodes = num_nodes
+        self.memory_dim = memory_dim
+        self.message_dim = message_dim
+        
+        # Initialize node memories
+        self.register_buffer('node_memory', torch.zeros(num_nodes, memory_dim))
+        self.register_buffer('last_update_time', torch.zeros(num_nodes))
+        
+        # Memory update mechanism (GRU-based)
+        self.memory_updater = nn.GRUCell(message_dim, memory_dim)
+        
+        # Message aggregation
+        self.message_aggregator = nn.Linear(memory_dim * 2 + message_dim, message_dim)
+        
+        # Time encoding
+        self.time_encoder = Time2Vec(memory_dim // 4)
+        
+    def get_memory(self, node_ids: torch.Tensor) -> torch.Tensor:
+        """Get current memory for specified nodes"""
+        return self.node_memory[node_ids]
+    
+    def create_messages(self, src_nodes: torch.Tensor, dst_nodes: torch.Tensor, 
+                       edge_features: torch.Tensor, timestamps: torch.Tensor) -> torch.Tensor:
+        """
+        Create messages between nodes incorporating temporal information
+        
+        Args:
+            src_nodes: Source node indices
+            dst_nodes: Destination node indices  
+            edge_features: Edge feature vectors
+            timestamps: Current timestamps
+            
+        Returns:
+            messages: Aggregated messages for each node
+        """
+        # Get current memories
+        src_memory = self.node_memory[src_nodes]  # (num_edges, memory_dim)
+        dst_memory = self.node_memory[dst_nodes]  # (num_edges, memory_dim)
+        
+        # Compute time deltas since last update
+        src_time_delta = timestamps - self.last_update_time[src_nodes]
+        dst_time_delta = timestamps - self.last_update_time[dst_nodes]
+        
+        # Encode time information
+        src_time_enc = self.time_encoder(src_time_delta.unsqueeze(1))
+        dst_time_enc = self.time_encoder(dst_time_delta.unsqueeze(1))
+        
+        # Create raw messages
+        raw_messages = torch.cat([
+            src_memory, dst_memory, edge_features,
+            src_time_enc, dst_time_enc
+        ], dim=1)
+        
+        # Aggregate messages (this is simplified - in practice would use attention)
+        messages = self.message_aggregator(raw_messages[:, :self.message_dim])
+        
+        return messages
+    
+    def update_memory(self, node_ids: torch.Tensor, messages: torch.Tensor, 
+                     timestamps: torch.Tensor):
+        """
+        Update node memories with new messages
+        
+        Args:
+            node_ids: Nodes to update
+            messages: New messages for each node
+            timestamps: Update timestamps
+        """
+        # Get current memories
+        current_memory = self.node_memory[node_ids]
+        
+        # Update memories using GRU
+        new_memory = self.memory_updater(messages, current_memory)
+        
+        # Store updated memories and timestamps
+        self.node_memory[node_ids] = new_memory
+        self.last_update_time[node_ids] = timestamps
+    
+    def compute_memory_deviation(self, node_ids: torch.Tensor, 
+                                current_features: torch.Tensor) -> torch.Tensor:
+        """
+        Compute how much current node features deviate from memory patterns
+        
+        Args:
+            node_ids: Nodes to analyze
+            current_features: Current node feature vectors
+            
+        Returns:
+            deviations: Anomaly scores based on memory deviation
+        """
+        # Get current memories
+        memories = self.node_memory[node_ids]
+        
+        # Compute cosine similarity between current features and memory
+        similarities = F.cosine_similarity(current_features, memories, dim=1)
+        
+        # Convert similarity to deviation (higher deviation = more anomalous)
+        deviations = 1.0 - similarities
+        
+        return deviations
+
+class GraphMemoryModule(nn.Module):
+    """
+    Graph-level memory module for tracking global network patterns
+    Maintains statistics about normal graph evolution patterns
+    """
+    def __init__(self, graph_feature_dim: int, memory_dim: int, window_size: int = 10):
+        super(GraphMemoryModule, self).__init__()
+        self.graph_feature_dim = graph_feature_dim
+        self.memory_dim = memory_dim
+        self.window_size = window_size
+        
+        # Graph-level memory
+        self.register_buffer('graph_memory', torch.zeros(memory_dim))
+        
+        # Historical statistics storage
+        self.register_buffer('historical_features', torch.zeros(window_size, graph_feature_dim))
+        self.register_buffer('feature_pointer', torch.tensor(0, dtype=torch.long))
+        self.register_buffer('num_stored', torch.tensor(0, dtype=torch.long))
+        
+        # Memory update network
+        self.memory_updater = nn.GRUCell(graph_feature_dim, memory_dim)
+        
+        # Feature extraction
+        self.feature_extractor = nn.Linear(graph_feature_dim, graph_feature_dim)
+        
+    def extract_graph_features(self, node_features: torch.Tensor, 
+                              edge_index: torch.Tensor) -> torch.Tensor:
+        """
+        Extract global graph-level features
+        
+        Args:
+            node_features: Node feature matrix
+            edge_index: Edge connectivity
+            
+        Returns:
+            graph_features: Global graph feature vector
+        """
+        # Basic graph statistics
+        num_nodes = node_features.shape[0]
+        num_edges = edge_index.shape[1]
+        
+        # Node feature statistics
+        node_mean = torch.mean(node_features, dim=0)
+        node_std = torch.std(node_features, dim=0)
+        
+        # Degree statistics
+        degrees = torch.bincount(edge_index[0], minlength=num_nodes).float()
+        degree_mean = torch.mean(degrees)
+        degree_std = torch.std(degrees)
+        
+        # Connectivity statistics
+        density = num_edges / (num_nodes * (num_nodes - 1)) if num_nodes > 1 else 0.0
+        
+        # Combine into graph feature vector
+        graph_features = torch.cat([
+            node_mean,
+            node_std, 
+            torch.tensor([degree_mean, degree_std, density], device=node_features.device)
+        ])
+        
+        return graph_features
+    
+    def update_memory(self, graph_features: torch.Tensor):
+        """
+        Update graph memory with new observations
+        
+        Args:
+            graph_features: Current graph feature vector
+        """
+        # Process features
+        processed_features = self.feature_extractor(graph_features)
+        
+        # Update memory using GRU
+        self.graph_memory = self.memory_updater(
+            processed_features.unsqueeze(0), 
+            self.graph_memory.unsqueeze(0)
+        ).squeeze(0)
+        
+        # Store in historical buffer (circular buffer)
+        self.historical_features[self.feature_pointer] = graph_features
+        self.feature_pointer = (self.feature_pointer + 1) % self.window_size
+        self.num_stored = torch.min(self.num_stored + 1, torch.tensor(self.window_size))
+    
+    def compute_graph_deviation(self, current_graph_features: torch.Tensor) -> torch.Tensor:
+        """
+        Compute deviation of current graph from normal patterns
+        
+        Args:
+            current_graph_features: Current graph features
+            
+        Returns:
+            deviation_score: Anomaly score for the graph
+        """
+        if self.num_stored == 0:
+            return torch.tensor(0.0, device=current_graph_features.device)
+        
+        # Get historical features (only stored ones)
+        stored_features = self.historical_features[:self.num_stored]
+        
+        # Compute mean and std of historical features
+        historical_mean = torch.mean(stored_features, dim=0)
+        historical_std = torch.std(stored_features, dim=0) + 1e-6  # Add epsilon for stability
+        
+        # Compute z-score deviation
+        z_scores = torch.abs((current_graph_features - historical_mean) / historical_std)
+        
+        # Aggregate z-scores (mean absolute deviation)
+        deviation_score = torch.mean(z_scores)
+        
+        return deviation_score
+
+class TemporalGCNEncoder(nn.Module):
+    """
+    DyRep-inspired temporal GCN encoder with multi-scale temporal modeling
+    """
+    def __init__(self, input_dim: int, hidden_dim: int, output_dim: int, 
+                 num_layers: int = 3, dropout: float = 0.2):
+        super(TemporalGCNEncoder, self).__init__()
+        self.num_layers = num_layers
+        self.dropout = dropout
+        
+        # GCN layers
+        self.convs = nn.ModuleList()
+        self.convs.append(GCNConv(input_dim, hidden_dim))
+        for _ in range(num_layers - 2):
+            self.convs.append(GCNConv(hidden_dim, hidden_dim))
+        self.convs.append(GCNConv(hidden_dim, output_dim))
+        
+        # Batch normalization
+        self.batch_norms = nn.ModuleList()
+        for _ in range(num_layers - 1):
+            self.batch_norms.append(nn.BatchNorm1d(hidden_dim))
+        self.batch_norms.append(nn.BatchNorm1d(output_dim))
+        
+        # Temporal attention
+        self.temporal_attention = nn.MultiheadAttention(output_dim, num_heads=4, dropout=dropout)
+        
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor, 
+                memory_context: Optional[torch.Tensor] = None) -> torch.Tensor:
+        """
+        Forward pass with temporal context integration
+        
+        Args:
+            x: Node features
+            edge_index: Edge connectivity  
+            memory_context: Optional memory context from previous timesteps
+            
+        Returns:
+            node_embeddings: Temporal node embeddings
+        """
+        # GCN encoding
+        h = x
+        for i, (conv, bn) in enumerate(zip(self.convs, self.batch_norms)):
+            h = conv(h, edge_index)
+            h = bn(h)
+            if i < len(self.convs) - 1:  # No activation on last layer
+                h = F.relu(h)
+                h = F.dropout(h, p=self.dropout, training=self.training)
+        
+        # Integrate memory context if available
+        if memory_context is not None:
+            # Prepare for attention: (seq_len, batch_size, embed_dim)
+            current = h.unsqueeze(0)  # (1, num_nodes, output_dim)
+            context = memory_context.unsqueeze(0)  # (1, num_nodes, output_dim)
+            
+            # Apply temporal attention
+            attended, _ = self.temporal_attention(current, context, context)
+            h = attended.squeeze(0)  # Back to (num_nodes, output_dim)
+        
+        return h
+
+class TrajectoryPredictor(nn.Module):
+    """
+    JODIE-inspired trajectory predictor for anomaly detection
+    Predicts future graph states and flags high prediction errors as anomalies
+    """
+    def __init__(self, embedding_dim: int, hidden_dim: int, time_dim: int = 16):
+        super(TrajectoryPredictor, self).__init__()
+        self.embedding_dim = embedding_dim
+        self.hidden_dim = hidden_dim
+        self.time_dim = time_dim
+        
+        # Time projection layers
+        self.time_encoder = Time2Vec(time_dim)
+        
+        # Projection networks
+        self.node_projector = nn.Sequential(
+            nn.Linear(embedding_dim + time_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, embedding_dim)
+        )
+        
+        self.graph_projector = nn.Sequential(
+            nn.Linear(embedding_dim + time_dim, hidden_dim), 
+            nn.ReLU(),
+            nn.Linear(hidden_dim, embedding_dim)
+        )
+        
+    def project_embeddings(self, embeddings: torch.Tensor, 
+                          time_delta: torch.Tensor) -> torch.Tensor:
+        """
+        Project embeddings to future time point
+        
+        Args:
+            embeddings: Current embeddings
+            time_delta: Time difference to project forward
+            
+        Returns:
+            projected_embeddings: Predicted future embeddings
+        """
+        batch_size = embeddings.shape[0]
+        
+        # Encode time delta
+        time_enc = self.time_encoder(time_delta.unsqueeze(1))  # (batch_size, time_dim)
+        
+        # Combine embeddings with time encoding
+        combined = torch.cat([embeddings, time_enc], dim=1)
+        
+        # Project to future
+        projected = self.node_projector(combined)
+        
+        return projected
+    
+    def predict_graph_evolution(self, graph_embedding: torch.Tensor,
+                               time_delta: torch.Tensor) -> torch.Tensor:
+        """
+        Predict evolution of graph-level features
+        
+        Args:
+            graph_embedding: Current graph-level embedding
+            time_delta: Time to project forward
+            
+        Returns:
+            predicted_graph: Predicted future graph embedding
+        """
+        # Encode time
+        time_enc = self.time_encoder(time_delta.unsqueeze(0))  # (1, time_dim)
+        
+        # Combine and project
+        combined = torch.cat([graph_embedding.unsqueeze(0), time_enc], dim=1)
+        predicted = self.graph_projector(combined).squeeze(0)
+        
+        return predicted
+    
+    def compute_prediction_error(self, predicted: torch.Tensor, 
+                                actual: torch.Tensor) -> torch.Tensor:
+        """
+        Compute prediction error for anomaly detection
+        
+        Args:
+            predicted: Predicted embeddings/features
+            actual: Actual observed embeddings/features
+            
+        Returns:
+            prediction_error: Error score (higher = more anomalous)
+        """
+        # Compute L2 distance
+        error = torch.norm(predicted - actual, p=2, dim=-1)
+        
+        # Normalize by embedding dimension for stability
+        normalized_error = error / math.sqrt(predicted.shape[-1])
+        
+        return normalized_error
+
+class TemporalAnomalyMemory:
+    """
+    Unified temporal memory system combining all components
+    This is the main interface for temporal anomaly detection
+    """
+    def __init__(self, num_nodes: int, node_feature_dim: int, 
+                 memory_dim: int = 64, embedding_dim: int = 32):
+        self.num_nodes = num_nodes
+        self.node_feature_dim = node_feature_dim
+        self.memory_dim = memory_dim
+        self.embedding_dim = embedding_dim
+        
+        # Initialize components
+        self.node_memory = NodeMemoryModule(num_nodes, memory_dim, memory_dim)
+        self.graph_memory = GraphMemoryModule(node_feature_dim + 3, memory_dim)  # +3 for degree stats
+        self.temporal_encoder = TemporalGCNEncoder(node_feature_dim, memory_dim, embedding_dim)
+        self.trajectory_predictor = TrajectoryPredictor(embedding_dim, memory_dim)
+        
+        # Training state
+        self.is_training_phase = True
+        self.anomaly_threshold = 0.5  # Will be learned during training
+        
+    def process_graph(self, node_features: torch.Tensor, edge_index: torch.Tensor,
+                     timestamp: float, is_normal: bool = True) -> Dict[str, torch.Tensor]:
+        """
+        Process a graph at given timestamp and compute anomaly scores
+        
+        Args:
+            node_features: Node feature matrix
+            edge_index: Edge connectivity
+            timestamp: Current timestamp
+            is_normal: Whether this graph represents normal behavior (for training)
+            
+        Returns:
+            results: Dictionary containing embeddings and anomaly scores
+        """
+        results = {}
+        
+        # Extract graph-level features
+        graph_features = self.graph_memory.extract_graph_features(node_features, edge_index)
+        
+        # Get current memories for context
+        node_ids = torch.arange(self.num_nodes, device=node_features.device)
+        memory_context = self.node_memory.get_memory(node_ids)
+        
+        # Encode current graph with temporal context
+        node_embeddings = self.temporal_encoder(node_features, edge_index, memory_context)
+        graph_embedding = global_mean_pool(node_embeddings, 
+                                         torch.zeros(node_embeddings.shape[0], dtype=torch.long, device=node_features.device))
+        
+        # Compute anomaly scores
+        node_memory_scores = self.node_memory.compute_memory_deviation(node_ids, node_embeddings)
+        graph_memory_score = self.graph_memory.compute_graph_deviation(graph_features)
+        
+        # Update memories if this is normal behavior or we're in training phase
+        if is_normal or self.is_training_phase:
+            # Create dummy messages for memory update (simplified)
+            if edge_index.shape[1] > 0:
+                src_nodes, dst_nodes = edge_index[0], edge_index[1]
+                timestamps_tensor = torch.full((edge_index.shape[1],), timestamp, device=node_features.device)
+                edge_features = torch.zeros(edge_index.shape[1], self.memory_dim, device=node_features.device)
+                
+                messages = self.node_memory.create_messages(src_nodes, dst_nodes, edge_features, timestamps_tensor)
+                
+                # Aggregate messages per node (simplified - should use proper aggregation)
+                aggregated_messages = torch.zeros(self.num_nodes, self.memory_dim, device=node_features.device)
+                for i in range(self.num_nodes):
+                    mask = (src_nodes == i) | (dst_nodes == i)
+                    if mask.sum() > 0:
+                        aggregated_messages[i] = messages[mask].mean(dim=0)
+                
+                # Update node memories
+                self.node_memory.update_memory(node_ids, aggregated_messages, 
+                                             torch.full((self.num_nodes,), timestamp, device=node_features.device))
+            
+            # Update graph memory
+            self.graph_memory.update_memory(graph_features)
+        
+        # Store results
+        results['node_embeddings'] = node_embeddings
+        results['graph_embedding'] = graph_embedding
+        results['node_memory_scores'] = node_memory_scores
+        results['graph_memory_score'] = graph_memory_score
+        results['timestamp'] = timestamp
+        
+        return results
+    
+    def predict_future(self, current_results: Dict[str, torch.Tensor], 
+                      future_timestamp: float) -> Dict[str, torch.Tensor]:
+        """
+        Predict future graph state for anomaly detection
+        
+        Args:
+            current_results: Results from current timestamp
+            future_timestamp: Target prediction timestamp
+            
+        Returns:
+            predictions: Predicted embeddings and features
+        """
+        current_time = current_results['timestamp']
+        time_delta = torch.tensor(future_timestamp - current_time, device=current_results['node_embeddings'].device)
+        
+        # Predict future node embeddings
+        predicted_nodes = self.trajectory_predictor.project_embeddings(
+            current_results['node_embeddings'], time_delta
+        )
+        
+        # Predict future graph embedding  
+        predicted_graph = self.trajectory_predictor.predict_graph_evolution(
+            current_results['graph_embedding'], time_delta
+        )
+        
+        return {
+            'predicted_node_embeddings': predicted_nodes,
+            'predicted_graph_embedding': predicted_graph,
+            'target_timestamp': future_timestamp
+        }
+    
+    def compute_unified_anomaly_score(self, current_results: Dict[str, torch.Tensor],
+                                     prediction_results: Optional[Dict[str, torch.Tensor]] = None,
+                                     actual_future: Optional[Dict[str, torch.Tensor]] = None) -> torch.Tensor:
+        """
+        Compute unified anomaly score combining all temporal signals
+        
+        Args:
+            current_results: Current timestamp results
+            prediction_results: Future predictions (optional)
+            actual_future: Actual future observations (optional)
+            
+        Returns:
+            unified_score: Combined anomaly score
+        """
+        # Weight parameters (could be learned)
+        alpha = 0.4  # Memory component weight
+        beta = 0.3   # Evolution component weight  
+        gamma = 0.3  # Prediction component weight
+        
+        # Memory-based anomaly score
+        memory_score = torch.mean(current_results['node_memory_scores']) + current_results['graph_memory_score']
+        
+        # Evolution-based score (simplified - would need temporal history)
+        evolution_score = current_results['graph_memory_score']  # Placeholder
+        
+        # Prediction-based score
+        prediction_score = torch.tensor(0.0, device=memory_score.device)
+        if prediction_results is not None and actual_future is not None:
+            node_pred_error = self.trajectory_predictor.compute_prediction_error(
+                prediction_results['predicted_node_embeddings'],
+                actual_future['node_embeddings']
+            )
+            graph_pred_error = self.trajectory_predictor.compute_prediction_error(
+                prediction_results['predicted_graph_embedding'].unsqueeze(0),
+                actual_future['graph_embedding'].unsqueeze(0)
+            )
+            prediction_score = torch.mean(node_pred_error) + graph_pred_error.squeeze()
+        
+        # Combine scores
+        unified_score = alpha * memory_score + beta * evolution_score + gamma * prediction_score
+        
+        return unified_score
+
+# Testing and utility functions
+def test_temporal_memory():
+    """Test the temporal memory system with synthetic data"""
+    print("Testing Temporal Memory System...")
+    
+    # Setup
+    num_nodes = 100
+    node_feature_dim = 16
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
+    # Initialize memory system
+    memory_system = TemporalAnomalyMemory(num_nodes, node_feature_dim)
+    
+    # Move to device
+    memory_system.node_memory = memory_system.node_memory.to(device)
+    memory_system.graph_memory = memory_system.graph_memory.to(device)
+    memory_system.temporal_encoder = memory_system.temporal_encoder.to(device)
+    memory_system.trajectory_predictor = memory_system.trajectory_predictor.to(device)
+    
+    print(f"✅ Initialized on {device}")
+    
+    # Simulate normal behavior (first 10 timesteps)
+    print("Processing normal behavior...")
+    normal_scores = []
+    
+    for t in range(10):
+        # Create synthetic normal graph
+        node_features = torch.randn(num_nodes, node_feature_dim, device=device)
+        num_edges = 300 + torch.randint(-10, 10, (1,)).item()  # Normal variation
+        edge_index = torch.randint(0, num_nodes, (2, num_edges), device=device)
+        
+        # Process graph
+        results = memory_system.process_graph(node_features, edge_index, float(t), is_normal=True)
+        score = memory_system.compute_unified_anomaly_score(results)
+        normal_scores.append(score.item())
+        
+        print(f"  T={t:2d}: Score={score.item():.4f}")
+    
+    # Simulate anomalous behavior
+    print("\nProcessing anomalous behavior...")
+    anomaly_scores = []
+    
+    # Star burst anomaly (T=10)
+    node_features = torch.randn(num_nodes, node_feature_dim, device=device)
+    # Create star: node 0 connects to many others
+    star_edges = torch.stack([
+        torch.zeros(50, device=device, dtype=torch.long),  # Source: always node 0
+        torch.randint(1, num_nodes, (50,), device=device)   # Targets: random other nodes
+    ])
+    normal_edges = torch.randint(0, num_nodes, (2, 250), device=device)
+    edge_index = torch.cat([star_edges, normal_edges], dim=1)
+    
+    results = memory_system.process_graph(node_features, edge_index, 10.0, is_normal=False)
+    score = memory_system.compute_unified_anomaly_score(results)
+    anomaly_scores.append(score.item())
+    print(f"  T=10 (Star): Score={score.item():.4f}")
+    
+    # Dense clique anomaly (T=11)
+    node_features = torch.randn(num_nodes, node_feature_dim, device=device)
+    # Create dense clique among first 20 nodes
+    clique_nodes = torch.arange(20, device=device)
+    clique_edges = torch.combinations(clique_nodes, 2).t()
+    normal_edges = torch.randint(0, num_nodes, (2, 200), device=device)
+    edge_index = torch.cat([clique_edges, normal_edges], dim=1)
+    
+    results = memory_system.process_graph(node_features, edge_index, 11.0, is_normal=False)
+    score = memory_system.compute_unified_anomaly_score(results)
+    anomaly_scores.append(score.item())
+    print(f"  T=11 (Clique): Score={score.item():.4f}")
+    
+    # Results
+    avg_normal = np.mean(normal_scores)
+    avg_anomaly = np.mean(anomaly_scores)
+    
+    print(f"\n📊 Results:")
+    print(f"  Average Normal Score: {avg_normal:.4f}")
+    print(f"  Average Anomaly Score: {avg_anomaly:.4f}")
+    print(f"  Separation Ratio: {avg_anomaly/avg_normal:.2f}x")
+    
+    if avg_anomaly > avg_normal:
+        print("✅ Temporal memory successfully detects anomalies!")
+    else:
+        print("⚠️  Need to tune temporal memory parameters")
+    
+    return memory_system
+
+if __name__ == "__main__":
+    test_temporal_memory()

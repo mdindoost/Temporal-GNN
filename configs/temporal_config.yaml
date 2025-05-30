@@ -1,0 +1,212 @@
+# Temporal GNN Anomaly Detection Configuration
+# ~/temporal-gnn-project/configs/temporal_config.yaml
+
+experiment:
+  name: "temporal_gnn_anomaly_detection"
+  description: "TGN/DyRep/JODIE-inspired temporal anomaly detection"
+  version: "1.0"
+  random_seed: 42
+  
+data:
+  dataset: "synthetic_temporal"
+  data_path: "data/synthetic/"
+  num_nodes: 100
+  node_feature_dim: 16
+  temporal_range: [0, 49]  # 50 timestamps
+  known_anomalies: [15, 30, 45]
+  anomaly_types: ["star_burst", "dense_clique", "disconnection"]
+  
+# Temporal Memory Configuration (TGN-inspired)
+memory:
+  node_memory_dim: 64
+  graph_memory_dim: 64
+  message_dim: 64
+  memory_update_type: "gru"  # gru, lstm, linear
+  time_encoding_dim: 16
+  memory_window_size: 10
+  
+# Temporal Encoder Configuration (DyRep-inspired)  
+encoder:
+  type: "temporal_gcn"
+  input_dim: 16
+  hidden_dim: 64
+  output_dim: 32
+  num_layers: 3
+  dropout: 0.2
+  attention_heads: 4
+  temporal_attention: true
+  
+# Trajectory Predictor Configuration (JODIE-inspired)
+predictor:
+  embedding_dim: 32
+  hidden_dim: 64
+  time_dim: 16
+  projection_type: "neural"  # neural, linear
+  prediction_horizon: 1  # How many steps ahead to predict
+  
+# Training Configuration
+training:
+  epochs: 50
+  learning_rate: 0.01
+  weight_decay: 1e-5
+  batch_size: 1  # Temporal graphs processed individually
+  validation_split: 0.2
+  patience: 15
+  gradient_clip: 1.0
+  
+  # Loss function weights
+  loss_weights:
+    memory_consistency: 0.4
+    evolution_smoothness: 0.3
+    prediction_accuracy: 0.3
+    embedding_regularization: 0.001
+    
+# Static Baseline Configuration (for comparison)
+static_baseline:
+  model_type: "DOMINANT"
+  hidden_dim: 64
+  embedding_dim: 32
+  learning_rate: 0.01
+  epochs: 50
+  alpha: 0.5  # Structure vs attribute balance
+  
+# Anomaly Detection Configuration
+anomaly_detection:
+  scoring_method: "unified"  # unified, memory_only, prediction_only
+  threshold_method: "adaptive"  # adaptive, fixed, percentile
+  threshold_value: 0.5
+  early_detection_steps: 3
+  
+  # Unified scoring weights (α, β, γ from paper)
+  unified_weights:
+    memory_deviation: 0.4     # α - TGN memory component
+    evolution_anomaly: 0.3    # β - DyRep evolution component  
+    prediction_error: 0.3     # γ - JODIE prediction component
+    
+# Evaluation Configuration
+evaluation:
+  metrics: ["auc", "ap", "precision", "recall", "f1"]
+  temporal_metrics: ["early_detection", "temporal_consistency"]
+  cross_validation: false  # Set to true for temporal CV
+  statistical_tests: true
+  
+  # Temporal-specific evaluation
+  temporal_evaluation:
+    prediction_horizons: [1, 2, 3]  # Steps ahead for early detection
+    memory_analysis: true
+    attention_analysis: true
+    component_ablation: false  # Set to true for ablation studies
+    
+# Visualization Configuration
+visualization:
+  generate_plots: true
+  plot_formats: ["png", "pdf"]
+  dpi: 300
+  
+  # Plot types to generate
+  plots:
+    training_curves: true
+    performance_comparison: true
+    temporal_timeline: true
+    memory_heatmaps: true
+    attention_weights: true
+    component_contributions: false  # Advanced analysis
+    
+# System Configuration
+system:
+  device: "cuda"  # cuda, cpu, auto
+  num_workers: 4
+  pin_memory: true
+  deterministic: true
+  
+# Output Configuration
+output:
+  results_dir: "results/temporal/"
+  log_dir: "logs/temporal/"
+  checkpoint_dir: "checkpoints/temporal/"
+  save_models: true
+  save_intermediate: false
+  
+# Advanced Configuration (for future experiments)
+advanced:
+  ablation_studies: false
+  hyperparameter_optimization: false
+  ensemble_methods: false
+  
+  # Ablation study components
+  ablation_components:
+    - "memory_module"
+    - "temporal_attention" 
+    - "trajectory_prediction"
+    - "multi_scale_modeling"
+    
+  # Hyperparameter search spaces
+  hyperparameter_search:
+    learning_rate: [0.001, 0.01, 0.1]
+    memory_dim: [32, 64, 128]
+    hidden_dim: [32, 64, 128]
+    attention_heads: [2, 4, 8]
+    
+# Experimental Conditions
+experimental_conditions:
+  # Different temporal anomaly scenarios
+  anomaly_scenarios:
+    - name: "sudden_changes"
+      description: "Abrupt structural changes"
+      timestamps: [15, 30, 45]
+      
+    - name: "gradual_drift" 
+      description: "Slow evolution changes"
+      timestamps: [20, 25, 30, 35]
+      
+    - name: "periodic_anomalies"
+      description: "Recurring anomalous patterns"
+      timestamps: [10, 20, 30, 40]
+      
+  # Noise levels for robustness testing
+  noise_levels: [0.0, 0.1, 0.2, 0.3]
+  
+  # Different graph sizes for scalability
+  graph_sizes: [50, 100, 200, 500]
+
+# Benchmarking Configuration
+benchmarking:
+  baseline_methods:
+    - "DOMINANT"
+    - "LOF" 
+    - "SCAN"
+    - "Radar"
+    
+  temporal_baselines:
+    - "LSTM-Autoencoder"
+    - "TGAT"
+    - "DySAT"
+    
+  performance_targets:
+    auc_improvement: 2.4  # Target: >2.4x improvement over static
+    min_auc: 0.80        # Minimum acceptable AUC
+    early_detection: 3    # Steps ahead detection capability
+    
+# Reproducibility Configuration
+reproducibility:
+  seed_everything: true
+  save_random_states: true
+  deterministic_algorithms: true
+  benchmark_mode: false  # Set true for consistent timing
+  
+# Documentation and Reporting
+documentation:
+  auto_generate_report: true
+  include_code_snippets: true
+  include_hyperparameters: true
+  include_system_info: true
+  
+  report_sections:
+    - "experiment_setup"
+    - "data_description" 
+    - "model_architecture"
+    - "training_details"
+    - "results_analysis"
+    - "temporal_insights"
+    - "comparison_with_static"
+    - "conclusions_future_work"
