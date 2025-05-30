@@ -1,0 +1,46 @@
+# Configuration file for Static GNN Baseline (DOMINANT-style)
+# ~/temporal-gnn-project/configs/static_baseline.yaml
+
+experiment:
+  name: "static_gnn_baseline"
+  description: "DOMINANT-style static GNN autoencoder for anomaly detection"
+  random_seed: 42
+  
+data:
+  dataset: "synthetic"
+  data_path: "data/synthetic/"
+  train_split: 0.8  # Use first 80% timestamps for training
+  feature_dim: 16
+  
+model:
+  type: "DOMINANT"
+  hidden_dim: 64
+  embedding_dim: 32
+  dropout: 0.2
+  
+training:
+  learning_rate: 0.01
+  weight_decay: 1e-5
+  epochs: 100
+  batch_size: 1
+  patience: 10
+  gradient_clip: 1.0
+  
+evaluation:
+  metrics: ["auc", "ap", "precision", "recall", "f1"]
+  threshold_strategy: "best_f1"
+  
+system:
+  device: "cuda"  # Will fallback to CPU if CUDA unavailable
+  num_workers: 4
+  
+output:
+  results_dir: "results/"
+  log_dir: "logs/"
+  save_model: true
+  save_plots: true
+  
+# Known anomaly timestamps in synthetic data
+anomalies:
+  timestamps: [15, 30, 45]
+  types: ["star_burst", "dense_clique", "disconnection"]
