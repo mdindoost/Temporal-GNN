@@ -34,7 +34,3 @@
 - Negative ratings in Bitcoin data can indicate potential fraud
 - Synthetic data has ground truth anomaly labels for evaluation
 
-## Next Steps
-1. Implement temporal graph loaders
-2. Create train/validation/test splits
-3. Design anomaly injection strategies for real data
