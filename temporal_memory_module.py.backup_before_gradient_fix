@@ -106,9 +106,7 @@ class NodeMemoryModule(nn.Module):
         new_memory = self.memory_updater(messages, current_memory)
         
         # Store updated memories and timestamps
-        self.node_memory = self.node_memory.clone()
         self.node_memory[node_ids] = new_memory
-        self.last_update_time = self.last_update_time.clone()
         self.last_update_time[node_ids] = timestamps
     
     def compute_memory_deviation(self, node_ids: torch.Tensor, 
@@ -237,11 +235,10 @@ class GraphMemoryModule(nn.Module):
         processed_features = self.feature_extractor(graph_features)
         
         # Update memory using GRU
-        new_graph_memory = self.memory_updater(
+        self.graph_memory = self.memory_updater(
             processed_features.unsqueeze(0), 
             self.graph_memory.unsqueeze(0)
         ).squeeze(0)
-        self.graph_memory = new_graph_memory.detach()
         
         # Store in historical buffer (circular buffer)
         self.historical_features[self.feature_pointer] = graph_features
