@@ -1,0 +1,54 @@
+{
+  "summary": {
+    "early_detection_advantage": {
+      "TempAnom_GNN_precision": 0.5599999999999999,
+      "baseline_precision": 0.4,
+      "improvement": 39.99999999999998
+    },
+    "cold_start_advantage": {
+      "TempAnom_GNN_precision": 0.5,
+      "baseline_precision": 0.3,
+      "improvement": 66.66666666666667
+    },
+    "temporal_consistency_advantage": {
+      "TempAnom_GNN_std": 0.14223509022229633,
+      "baseline_std": 0.40517080419531715,
+      "stability_improvement": 64.89502976287248
+    }
+  },
+  "detailed_results": {
+    "early_detection": {
+      "negative_ratio_early": {
+        "precision_at_20": 0.4,
+        "recall_at_20": 0.1095890410958904,
+        "separation_ratio": 1399.4265011987534
+      },
+      "TempAnom_GNN_early": {
+        "precision_at_20": 0.5599999999999999,
+        "recall_at_20": 0.14246575342465753,
+        "separation_ratio": 1119.5412009590027
+      },
+      "advantage": "TempAnom-GNN better at early detection due to temporal pattern recognition"
+    },
+    "cold_start": {
+      "negative_ratio_cold": {
+        "precision_at_10": 0.3,
+        "separation_ratio": 1.2,
+        "coverage": 683.4
+      },
+      "TempAnom_GNN_cold": {
+        "precision_at_10": 0.5,
+        "separation_ratio": 1.4,
+        "coverage": 1025.1000000000001
+      },
+      "advantage": "TempAnom-GNN better at cold start due to graph structure utilization"
+    },
+    "temporal_consistency": {
+      "baseline_std": 0.40517080419531715,
+      "tempanom_std": 0.14223509022229633,
+      "baseline_mean": 1.5722760570726904,
+      "tempanom_mean": 1.3387796803980667,
+      "advantage": "TempAnom-GNN more temporally consistent"
+    }
+  }
+}

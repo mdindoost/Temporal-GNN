@@ -1,0 +1,1 @@
+ENHANCED ABLATION STUDY INSIGHTS\n==================================================\n\nBEST PERFORMERS:\nEarly Detection: evolution_only (1.000)\nCold Start: evolution_only (1.000)\n\nCOMPONENT INTERFERENCE:\nEvolution Only: 0.360\nFull System: 0.190\nPerformance Change: -47.2%

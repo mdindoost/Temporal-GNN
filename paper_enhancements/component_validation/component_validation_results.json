@@ -1,0 +1,149 @@
+{
+  "early_detection_component_analysis": {
+    "memory_only": {
+      "n_trials": 10,
+      "precision_mean": 0.2390269587324841,
+      "precision_std": 0.1292846465855023,
+      "separation_mean": 9259083.993908536,
+      "separation_std": 24480037.870360285,
+      "config": {
+        "name": "Memory Only",
+        "description": "TGN-style memory mechanism",
+        "use_memory": true,
+        "use_evolution": false,
+        "use_prediction": false
+      }
+    },
+    "evolution_only": {
+      "n_trials": 10,
+      "precision_mean": 0.28327755857970727,
+      "precision_std": 0.16239242235645307,
+      "separation_mean": 9832633.443853695,
+      "separation_std": 25731612.755943127,
+      "config": {
+        "name": "Evolution Only",
+        "description": "DyRep-style temporal encoding",
+        "use_memory": false,
+        "use_evolution": true,
+        "use_prediction": false
+      }
+    },
+    "prediction_only": {
+      "n_trials": 10,
+      "precision_mean": 0.21415833651525995,
+      "precision_std": 0.11177752627842194,
+      "separation_mean": 9039543.860472912,
+      "separation_std": 23999508.196160663,
+      "config": {
+        "name": "Prediction Only",
+        "description": "JODIE-style trajectory prediction",
+        "use_memory": false,
+        "use_evolution": false,
+        "use_prediction": true
+      }
+    },
+    "full_system": {
+      "n_trials": 10,
+      "precision_mean": 0.2247347363013646,
+      "precision_std": 0.13201724274157148,
+      "separation_mean": 6433998.860825776,
+      "separation_std": 16287849.53648651,
+      "config": {
+        "name": "Full System",
+        "description": "All components combined",
+        "use_memory": true,
+        "use_evolution": true,
+        "use_prediction": true
+      }
+    }
+  },
+  "cold_start_component_analysis": {
+    "memory_only": {
+      "n_trials": 11,
+      "precision_mean": 0.6902361086814168,
+      "precision_std": 0.29257200578764303,
+      "coverage_mean": 0.578775389329705,
+      "coverage_std": 0.05749581381411057,
+      "config": {
+        "name": "Memory Only",
+        "description": "TGN-style memory mechanism",
+        "use_memory": true,
+        "use_evolution": false,
+        "use_prediction": false
+      }
+    },
+    "evolution_only": {
+      "n_trials": 11,
+      "precision_mean": 0.7730932182262898,
+      "precision_std": 0.2549903813193925,
+      "coverage_mean": 0.8704398880328338,
+      "coverage_std": 0.043469705782511206,
+      "config": {
+        "name": "Evolution Only",
+        "description": "DyRep-style temporal encoding",
+        "use_memory": false,
+        "use_evolution": true,
+        "use_prediction": false
+      }
+    },
+    "prediction_only": {
+      "n_trials": 11,
+      "precision_mean": 0.7475026180839194,
+      "precision_std": 0.28668764561658533,
+      "coverage_mean": 0.8910350197641546,
+      "coverage_std": 0.019667568623448154,
+      "config": {
+        "name": "Prediction Only",
+        "description": "JODIE-style trajectory prediction",
+        "use_memory": false,
+        "use_evolution": false,
+        "use_prediction": true
+      }
+    },
+    "full_system": {
+      "n_trials": 11,
+      "precision_mean": 0.6990846827960735,
+      "precision_std": 0.31248401055495606,
+      "coverage_mean": 0.7403045345567996,
+      "coverage_std": 0.08413221388076876,
+      "config": {
+        "name": "Full System",
+        "description": "All components combined",
+        "use_memory": true,
+        "use_evolution": true,
+        "use_prediction": true
+      }
+    }
+  },
+  "component_configurations": {
+    "memory_only": {
+      "name": "Memory Only",
+      "description": "TGN-style memory mechanism",
+      "use_memory": true,
+      "use_evolution": false,
+      "use_prediction": false
+    },
+    "evolution_only": {
+      "name": "Evolution Only",
+      "description": "DyRep-style temporal encoding",
+      "use_memory": false,
+      "use_evolution": true,
+      "use_prediction": false
+    },
+    "prediction_only": {
+      "name": "Prediction Only",
+      "description": "JODIE-style trajectory prediction",
+      "use_memory": false,
+      "use_evolution": false,
+      "use_prediction": true
+    },
+    "full_system": {
+      "name": "Full System",
+      "description": "All components combined",
+      "use_memory": true,
+      "use_evolution": true,
+      "use_prediction": true
+    }
+  },
+  "timestamp": "2025-05-31T11:42:29.653249"
+}

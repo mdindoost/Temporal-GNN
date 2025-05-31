@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Enhanced ablation study on component weights demonstrating interference effects and architectural insights.}
+\label{tab:enhanced_ablation}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Weights} & \textbf{Early Detection} & \textbf{Cold Start} \\
+\midrule
+\textbf{Evolution Only} & (1.0, 0.0, 0.0) & \textbf{0.360 ± 0.434} & \textbf{0.387 ± 0.530} \\\\
+Strong Evolution & (0.7, 0.2, 0.1) & 0.330 ± 0.413 & 0.373 ± 0.513 \\\\
+Evolution Memory & (0.5, 0.5, 0.0) & 0.330 ± 0.452 & 0.373 ± 0.513 \\\\
+Evolution Emphasis & (0.6, 0.3, 0.1) & 0.300 ± 0.420 & 0.360 ± 0.498 \\\\
+Memory Only & (0.0, 1.0, 0.0) & 0.130 ± 0.172 & 0.493 ± 0.402 \\\\
+Equal Weights & (0.3, 0.3, 0.3) & 0.190 ± 0.292 & 0.240 ± 0.434 \\\\
+Evolution Prediction & (0.5, 0.0, 0.5) & 0.150 ± 0.255 & 0.253 ± 0.433 \\\\
+Prediction Only & (0.0, 0.0, 1.0) & 0.010 ± 0.022 & 0.053 ± 0.087 \\\\
+\bottomrule
+\end{tabular}
+\end{table}

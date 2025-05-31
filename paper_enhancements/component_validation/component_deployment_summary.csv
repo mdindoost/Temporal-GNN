@@ -1,0 +1,5 @@
+Component,Description,Early Detection P@10,Cold Start P@10,Early Trials,Cold Trials
+Evolution Only,DyRep-style temporal encoding,0.283 ± 0.162,0.773 ± 0.255,10,11
+Memory Only,TGN-style memory mechanism,0.239 ± 0.129,0.690 ± 0.293,10,11
+Full System,All components combined,0.225 ± 0.132,0.699 ± 0.312,10,11
+Prediction Only,JODIE-style trajectory prediction,0.214 ± 0.112,0.748 ± 0.287,10,11

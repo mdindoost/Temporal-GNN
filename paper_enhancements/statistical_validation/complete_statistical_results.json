@@ -1,0 +1,45 @@
+{
+  "early_detection": {
+    "scenario": "early_detection",
+    "n_samples": 29,
+    "baseline_mean": 0.3327586206896551,
+    "baseline_std": 0.20896950036035433,
+    "tempanom_mean": 0.40733519997559536,
+    "tempanom_std": 0.26223703150707317,
+    "improvement_mean": 0.20827176511078802,
+    "improvement_ci_95": [
+      0.17094115542070457,
+      0.24560237480087146
+    ],
+    "p_value": 2.4419606382779846e-06,
+    "statistically_significant": "True"
+  },
+  "cold_start": {
+    "scenario": "cold_start",
+    "n_samples": 28,
+    "baseline_mean": 0.85,
+    "baseline_std": 0.2129721645125082,
+    "tempanom_mean": 0.9234208050882238,
+    "tempanom_std": 0.12467622044686162,
+    "improvement_mean": 0.13238527678575898,
+    "improvement_ci_95": [
+      0.055434796232231076,
+      0.2093357573392869
+    ],
+    "p_value": 0.001679706258078922,
+    "statistically_significant": "True"
+  },
+  "temporal_consistency": {
+    "scenario": "temporal_consistency",
+    "n_periods": 16,
+    "baseline_mean": 472.14456738267234,
+    "baseline_std": 891.7504983344095,
+    "tempanom_mean": 469.4479658424371,
+    "tempanom_std": 890.8784913849566,
+    "consistency_improvement": 0.0009778597837417,
+    "f_statistic": 1.0019585919414868,
+    "p_value": 0.9970266861397277,
+    "statistically_significant": "False"
+  },
+  "timestamp": "2025-05-31T11:38:30.939977"
+}

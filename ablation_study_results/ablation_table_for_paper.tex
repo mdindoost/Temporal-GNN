@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablation study on component weights showing interference effects.}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Weights} & \textbf{Early Detection} & \textbf{Cold Start} \\
+\midrule
+Evolution Only & (1.0, 0.0, 0.0) & 0.000 ± 0.000 & 0.167 ± 0.058 \\\\
+Memory Only & (0.0, 1.0, 0.0) & 0.000 ± 0.000 & 0.000 ± 0.000 \\\\
+Prediction Only & (0.0, 0.0, 1.0) & 0.000 ± 0.000 & 0.133 ± 0.231 \\\\
+Equal Weights & (0.3, 0.3, 0.3) & 0.000 ± 0.000 & 0.167 ± 0.153 \\\\
+Evolution Emphasis & (0.6, 0.3, 0.1) & 0.000 ± 0.000 & 0.167 ± 0.058 \\\\
+Strong Evolution & (0.7, 0.2, 0.1) & 0.000 ± 0.000 & 0.167 ± 0.058 \\\\
+Evolution Memory & (0.5, 0.5, 0.0) & 0.000 ± 0.000 & 0.200 ± 0.100 \\\\
+Evolution Prediction & (0.5, 0.0, 0.5) & 0.000 ± 0.000 & 0.200 ± 0.100 \\\\
+\bottomrule
+\end{tabular}
+\end{table}

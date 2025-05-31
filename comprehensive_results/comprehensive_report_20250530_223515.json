@@ -1,0 +1,3383 @@
+{
+  "test_summary": {
+    "ablation_study": {
+      "status": "NEEDS_IMPROVEMENT",
+      "best_separation": 1.3010642273288289,
+      "best_configuration": "evolution_only"
+    },
+    "bitcoin_analysis": {
+      "status": "PASSED",
+      "networks_tested": [
+        "alpha",
+        "otc"
+      ],
+      "avg_performance": 1.364071059345253,
+      "bitcoin_separation": 1.628495339965656,
+      "suspicious_users_detected": 227
+    },
+    "scalability_analysis": {
+      "status": "PASSED",
+      "max_nodes_tested": 500,
+      "inference_time_scaling": "Concerning"
+    },
+    "cross_validation": {
+      "status": "NEEDS_IMPROVEMENT",
+      "mean_separation": 0.8615344978855157,
+      "std_separation": 0.03950176378113938,
+      "reproducible": "True"
+    }
+  },
+  "publication_readiness": {
+    "overall_score": 0.5,
+    "ready_for_top_tier": false,
+    "ready_for_publication": false,
+    "major_weaknesses": [
+      "ablation_study",
+      "cross_validation"
+    ]
+  },
+  "recommendations": [
+    "\u26a0\ufe0f Consider architecture improvements for better component synergy",
+    "\u2705 Successfully detected suspicious users in real Bitcoin networks",
+    "\u2705 Highly reproducible results - emphasize statistical robustness",
+    "\u26a0\ufe0f Consider optimization for larger networks"
+  ],
+  "all_results": {
+    "ablation_study": {
+      "memory_only": {
+        "separation_ratio": 0.8059430785120117,
+        "normal_scores": [
+          0.6000000000000001,
+          0.6000000000000001,
+          5.163158798217774,
+          3.0041833877563473,
+          1.775268316268921,
+          1.4773059368133545,
+          1.2244040966033936,
+          1.387357521057129,
+          0.9708492994308473,
+          1.0868252277374268
+        ],
+        "anomaly_scores": [
+          5.147271537780762,
+          1.3067247390747072,
+          1.0129144906997682,
+          0.8011826992034913,
+          0.9435017824172974,
+          0.699208688735962,
+          0.8917438030242919,
+          0.8606266736984254,
+          1.2265751838684082,
+          1.0444844484329225
+        ],
+        "component_config": {
+          "use_memory": true,
+          "use_evolution": false,
+          "use_prediction": false
+        }
+      },
+      "evolution_only": {
+        "separation_ratio": 1.3010642273288289,
+        "normal_scores": [
+          0.5249999999999999,
+          0.5249999999999999,
+          2.02946959733963,
+          1.691616904735565,
+          1.433602863550186,
+          1.3707870483398437,
+          1.2366716623306273,
+          1.0894501268863677,
+          1.005974605679512,
+          1.0269426673650741
+        ],
+        "anomaly_scores": [
+          5.25,
+          1.1144370138645172,
+          1.0132751315832138,
+          0.9296811372041702,
+          0.8136775016784668,
+          1.8615718960762022,
+          0.7829814970493316,
+          1.9392956793308258,
+          0.7091051191091536,
+          1.1135461807250975
+        ],
+        "component_config": {
+          "use_memory": false,
+          "use_evolution": true,
+          "use_prediction": false
+        }
+      },
+      "prediction_only": {
+        "separation_ratio": 1.1730547939995701,
+        "normal_scores": [
+          0.375,
+          0.375,
+          1.6577265858650208,
+          1.5871621370315552,
+          1.3927753865718842,
+          1.3447325527668,
+          0.8773064017295837,
+          0.9315420091152191,
+          0.8549809455871582,
+          0.6737432330846786
+        ],
+        "anomaly_scores": [
+          2.19983446598053,
+          0.9700369834899902,
+          3.412236213684082,
+          0.5089294016361237,
+          0.3953453153371811,
+          0.5391265600919724,
+          1.629930317401886,
+          0.5811908394098282,
+          0.4972263425588608,
+          1.0787692666053772
+        ],
+        "component_config": {
+          "use_memory": false,
+          "use_evolution": false,
+          "use_prediction": true
+        }
+      },
+      "memory_evolution": {
+        "separation_ratio": 1.004614810101787,
+        "normal_scores": [
+          0.5625,
+          0.5625,
+          5.625,
+          1.9011587351560593,
+          1.5870114415884018,
+          1.1931112110614777,
+          1.2334901243448257,
+          1.1774678975343704,
+          1.2271060645580292,
+          1.2081193774938583
+        ],
+        "anomaly_scores": [
+          2.400858700275421,
+          1.167464330792427,
+          1.0560894906520844,
+          1.090373419225216,
+          0.9576150700449944,
+          0.9105195701122284,
+          0.9987750425934792,
+          0.9632116332650185,
+          1.3045315146446228,
+          5.503143489360809
+        ],
+        "component_config": {
+          "use_memory": true,
+          "use_evolution": true,
+          "use_prediction": false
+        }
+      },
+      "memory_prediction": {
+        "separation_ratio": 0.8876706016193845,
+        "normal_scores": [
+          0.48750000000000004,
+          0.48750000000000004,
+          4.875,
+          1.7095122009515764,
+          1.0187061935663224,
+          1.0283310055732728,
+          1.113316994905472,
+          1.1938700079917908,
+          0.8945420622825624,
+          0.768782512843609
+        ],
+        "anomaly_scores": [
+          2.0451239526271823,
+          4.245931148529053,
+          0.9419350415468217,
+          1.059167155623436,
+          0.7784085452556609,
+          0.6453184872865677,
+          0.6433233574032784,
+          0.7154328525066376,
+          0.4624091394245625,
+          0.5149082064628602
+        ],
+        "component_config": {
+          "use_memory": true,
+          "use_evolution": false,
+          "use_prediction": true
+        }
+      },
+      "evolution_prediction": {
+        "separation_ratio": 0.794256136644728,
+        "normal_scores": [
+          0.44999999999999996,
+          0.44999999999999996,
+          4.5,
+          1.4634083032608032,
+          1.214372384548187,
+          1.1152067184448242,
+          0.935904049873352,
+          1.223535346984863,
+          0.9836853504180907,
+          0.8408986508846282
+        ],
+        "anomaly_scores": [
+          2.2742143392562864,
+          1.1452683806419373,
+          0.8689257502555847,
+          1.0973774313926699,
+          0.8861805617809296,
+          0.6609096586704254,
+          0.7539804339408873,
+          1.1303868412971498,
+          0.8422283828258514,
+          0.8064499139785766
+        ],
+        "component_config": {
+          "use_memory": false,
+          "use_evolution": true,
+          "use_prediction": true
+        }
+      },
+      "full_system": {
+        "separation_ratio": 0.8304969383830582,
+        "normal_scores": [
+          0.5,
+          0.5,
+          5.0,
+          2.015420913696289,
+          1.4855810403823853,
+          1.172998070716858,
+          1.1953330039978027,
+          1.1063849925994873,
+          0.9928229451179504,
+          0.9523370862007141
+        ],
+        "anomaly_scores": [
+          2.338682174682617,
+          4.188276767730713,
+          0.9104602336883545,
+          0.6201380491256714,
+          0.8827806115150452,
+          0.6465849876403809,
+          0.7406726479530334,
+          0.6937588453292847,
+          0.7687125205993652,
+          0.6016767024993896
+        ],
+        "component_config": {
+          "use_memory": true,
+          "use_evolution": true,
+          "use_prediction": true
+        }
+      }
+    },
+    "bitcoin_analysis": {
+      "alpha": {
+        "anomaly_scores": [
+          {
+            "month": "2010-11",
+            "score": 0.75,
+            "negative_edges": 0,
+            "total_edges": 28,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2010-12",
+            "score": 0.7761236429214478,
+            "negative_edges": 0,
+            "total_edges": 47,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-01",
+            "score": 1.2503280639648438,
+            "negative_edges": 0,
+            "total_edges": 42,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-02",
+            "score": 3.9371752738952637,
+            "negative_edges": 0,
+            "total_edges": 128,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-03",
+            "score": 1.0800554752349854,
+            "negative_edges": 0,
+            "total_edges": 105,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-04",
+            "score": 2.8708643913269043,
+            "negative_edges": 0,
+            "total_edges": 281,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-05",
+            "score": 3.938842296600342,
+            "negative_edges": 9,
+            "total_edges": 967,
+            "negative_ratio": 0.009307135470527405,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-06",
+            "score": 3.9444472789764404,
+            "negative_edges": 28,
+            "total_edges": 1014,
+            "negative_ratio": 0.027613412228796843,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-07",
+            "score": 0.7384069561958313,
+            "negative_edges": 9,
+            "total_edges": 265,
+            "negative_ratio": 0.033962264150943396,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-08",
+            "score": 0.6536108255386353,
+            "negative_edges": 4,
+            "total_edges": 257,
+            "negative_ratio": 0.01556420233463035,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-09",
+            "score": 0.7817440629005432,
+            "negative_edges": 0,
+            "total_edges": 148,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-10",
+            "score": 0.8458871841430664,
+            "negative_edges": 2,
+            "total_edges": 145,
+            "negative_ratio": 0.013793103448275862,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-11",
+            "score": 0.8447345495223999,
+            "negative_edges": 3,
+            "total_edges": 155,
+            "negative_ratio": 0.01935483870967742,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-12",
+            "score": 0.6958385109901428,
+            "negative_edges": 0,
+            "total_edges": 241,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-01",
+            "score": 0.7586840987205505,
+            "negative_edges": 2,
+            "total_edges": 233,
+            "negative_ratio": 0.008583690987124463,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-02",
+            "score": 0.6159970760345459,
+            "negative_edges": 9,
+            "total_edges": 313,
+            "negative_ratio": 0.02875399361022364,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-03",
+            "score": 0.6384164094924927,
+            "negative_edges": 10,
+            "total_edges": 292,
+            "negative_ratio": 0.03424657534246575,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-04",
+            "score": 0.6200693845748901,
+            "negative_edges": 9,
+            "total_edges": 322,
+            "negative_ratio": 0.027950310559006212,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-05",
+            "score": 1.645009160041809,
+            "negative_edges": 11,
+            "total_edges": 367,
+            "negative_ratio": 0.02997275204359673,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-06",
+            "score": 1.6228022575378418,
+            "negative_edges": 10,
+            "total_edges": 431,
+            "negative_ratio": 0.02320185614849188,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-07",
+            "score": 1.7838802337646484,
+            "negative_edges": 10,
+            "total_edges": 472,
+            "negative_ratio": 0.0211864406779661,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-08",
+            "score": 1.3782724142074585,
+            "negative_edges": 16,
+            "total_edges": 424,
+            "negative_ratio": 0.03773584905660377,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-09",
+            "score": 3.131889820098877,
+            "negative_edges": 70,
+            "total_edges": 431,
+            "negative_ratio": 0.16241299303944315,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-10",
+            "score": 1.3350646495819092,
+            "negative_edges": 40,
+            "total_edges": 369,
+            "negative_ratio": 0.10840108401084012,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-11",
+            "score": 0.750848650932312,
+            "negative_edges": 27,
+            "total_edges": 361,
+            "negative_ratio": 0.07479224376731301,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-12",
+            "score": 0.8402371406555176,
+            "negative_edges": 11,
+            "total_edges": 397,
+            "negative_ratio": 0.027707808564231738,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-01",
+            "score": 0.9622958302497864,
+            "negative_edges": 30,
+            "total_edges": 342,
+            "negative_ratio": 0.08771929824561403,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-02",
+            "score": 1.6820173263549805,
+            "negative_edges": 18,
+            "total_edges": 274,
+            "negative_ratio": 0.06569343065693431,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-03",
+            "score": 2.253647565841675,
+            "negative_edges": 106,
+            "total_edges": 479,
+            "negative_ratio": 0.22129436325678498,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-04",
+            "score": 1.089904546737671,
+            "negative_edges": 62,
+            "total_edges": 406,
+            "negative_ratio": 0.15270935960591134,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-05",
+            "score": 0.9593306183815002,
+            "negative_edges": 31,
+            "total_edges": 334,
+            "negative_ratio": 0.09281437125748503,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-06",
+            "score": 1.4869468212127686,
+            "negative_edges": 16,
+            "total_edges": 252,
+            "negative_ratio": 0.06349206349206349,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-07",
+            "score": 0.7778948545455933,
+            "negative_edges": 47,
+            "total_edges": 338,
+            "negative_ratio": 0.1390532544378698,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-08",
+            "score": 1.0039706230163574,
+            "negative_edges": 18,
+            "total_edges": 276,
+            "negative_ratio": 0.06521739130434782,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-09",
+            "score": 1.9245612621307373,
+            "negative_edges": 5,
+            "total_edges": 169,
+            "negative_ratio": 0.029585798816568046,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-10",
+            "score": 1.0463947057724,
+            "negative_edges": 8,
+            "total_edges": 232,
+            "negative_ratio": 0.034482758620689655,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-11",
+            "score": 0.8567014932632446,
+            "negative_edges": 11,
+            "total_edges": 275,
+            "negative_ratio": 0.04,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-12",
+            "score": 1.1355321407318115,
+            "negative_edges": 44,
+            "total_edges": 224,
+            "negative_ratio": 0.19642857142857142,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-01",
+            "score": 1.3934963941574097,
+            "negative_edges": 5,
+            "total_edges": 142,
+            "negative_ratio": 0.035211267605633804,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-02",
+            "score": 1.1199243068695068,
+            "negative_edges": 20,
+            "total_edges": 179,
+            "negative_ratio": 0.11173184357541899,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-03",
+            "score": 1.499008297920227,
+            "negative_edges": 39,
+            "total_edges": 135,
+            "negative_ratio": 0.28888888888888886,
+            "is_suspicious": true
+          },
+          {
+            "month": "2014-04",
+            "score": 0.9580432176589966,
+            "negative_edges": 34,
+            "total_edges": 243,
+            "negative_ratio": 0.13991769547325103,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-05",
+            "score": 1.1385729312896729,
+            "negative_edges": 18,
+            "total_edges": 138,
+            "negative_ratio": 0.13043478260869565,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-06",
+            "score": 0.7605551481246948,
+            "negative_edges": 23,
+            "total_edges": 179,
+            "negative_ratio": 0.12849162011173185,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-07",
+            "score": 1.0685381889343262,
+            "negative_edges": 28,
+            "total_edges": 139,
+            "negative_ratio": 0.2014388489208633,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-08",
+            "score": 0.8644959926605225,
+            "negative_edges": 39,
+            "total_edges": 200,
+            "negative_ratio": 0.195,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-09",
+            "score": 1.3327527046203613,
+            "negative_edges": 16,
+            "total_edges": 110,
+            "negative_ratio": 0.14545454545454545,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-10",
+            "score": 1.1857497692108154,
+            "negative_edges": 12,
+            "total_edges": 129,
+            "negative_ratio": 0.09302325581395349,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-11",
+            "score": 1.407877802848816,
+            "negative_edges": 7,
+            "total_edges": 101,
+            "negative_ratio": 0.06930693069306931,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-12",
+            "score": 1.1586664915084839,
+            "negative_edges": 24,
+            "total_edges": 105,
+            "negative_ratio": 0.22857142857142856,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-01",
+            "score": 2.0364556312561035,
+            "negative_edges": 8,
+            "total_edges": 24,
+            "negative_ratio": 0.3333333333333333,
+            "is_suspicious": true
+          },
+          {
+            "month": "2015-02",
+            "score": 2.034377098083496,
+            "negative_edges": 0,
+            "total_edges": 9,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-03",
+            "score": 1.687032699584961,
+            "negative_edges": 1,
+            "total_edges": 12,
+            "negative_ratio": 0.08333333333333333,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-04",
+            "score": 1.037513017654419,
+            "negative_edges": 0,
+            "total_edges": 41,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-05",
+            "score": 1.0679502487182617,
+            "negative_edges": 5,
+            "total_edges": 24,
+            "negative_ratio": 0.20833333333333334,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-06",
+            "score": 1.276639461517334,
+            "negative_edges": 2,
+            "total_edges": 8,
+            "negative_ratio": 0.25,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-07",
+            "score": 1.1072654724121094,
+            "negative_edges": 0,
+            "total_edges": 11,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-08",
+            "score": 1.0963281393051147,
+            "negative_edges": 1,
+            "total_edges": 11,
+            "negative_ratio": 0.09090909090909091,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-09",
+            "score": 0.926872193813324,
+            "negative_edges": 1,
+            "total_edges": 15,
+            "negative_ratio": 0.06666666666666667,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-12",
+            "score": 0.770546555519104,
+            "negative_edges": 6,
+            "total_edges": 25,
+            "negative_ratio": 0.24,
+            "is_suspicious": false
+          }
+        ],
+        "temporal_evolution": [
+          0.75,
+          0.7761236429214478,
+          1.2503280639648438,
+          3.9371752738952637,
+          1.0800554752349854,
+          2.8708643913269043,
+          3.938842296600342,
+          3.9444472789764404,
+          0.7384069561958313,
+          0.6536108255386353,
+          0.7817440629005432,
+          0.8458871841430664,
+          0.8447345495223999,
+          0.6958385109901428,
+          0.7586840987205505,
+          0.6159970760345459,
+          0.6384164094924927,
+          0.6200693845748901,
+          1.645009160041809,
+          1.6228022575378418,
+          1.7838802337646484,
+          1.3782724142074585,
+          3.131889820098877,
+          1.3350646495819092,
+          0.750848650932312,
+          0.8402371406555176,
+          0.9622958302497864,
+          1.6820173263549805,
+          2.253647565841675,
+          1.089904546737671,
+          0.9593306183815002,
+          1.4869468212127686,
+          0.7778948545455933,
+          1.0039706230163574,
+          1.9245612621307373,
+          1.0463947057724,
+          0.8567014932632446,
+          1.1355321407318115,
+          1.3934963941574097,
+          1.1199243068695068,
+          1.499008297920227,
+          0.9580432176589966,
+          1.1385729312896729,
+          0.7605551481246948,
+          1.0685381889343262,
+          0.8644959926605225,
+          1.3327527046203613,
+          1.1857497692108154,
+          1.407877802848816,
+          1.1586664915084839,
+          2.0364556312561035,
+          2.034377098083496,
+          1.687032699584961,
+          1.037513017654419,
+          1.0679502487182617,
+          1.276639461517334,
+          1.1072654724121094,
+          1.0963281393051147,
+          0.926872193813324,
+          0.770546555519104
+        ],
+        "anomalous_users": [
+          {
+            "user_id": 3747,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3760,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3767,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 15,
+            "negative_count": 10
+          },
+          {
+            "user_id": 3748,
+            "negative_ratio": 0.5,
+            "total_interactions": 8,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3696,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3774,
+            "negative_ratio": 0.8888888888888888,
+            "total_interactions": 9,
+            "negative_count": 8
+          },
+          {
+            "user_id": 3765,
+            "negative_ratio": 1.0,
+            "total_interactions": 5,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3749,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3754,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3698,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3593,
+            "negative_ratio": 0.4666666666666667,
+            "total_interactions": 15,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3758,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 15,
+            "negative_count": 10
+          },
+          {
+            "user_id": 3781,
+            "negative_ratio": 0.44086021505376344,
+            "total_interactions": 93,
+            "negative_count": 41
+          },
+          {
+            "user_id": 3741,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 1291,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3566,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3770,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3757,
+            "negative_ratio": 0.8,
+            "total_interactions": 10,
+            "negative_count": 8
+          },
+          {
+            "user_id": 3755,
+            "negative_ratio": 0.5384615384615384,
+            "total_interactions": 13,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3771,
+            "negative_ratio": 1.0,
+            "total_interactions": 7,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3740,
+            "negative_ratio": 0.5,
+            "total_interactions": 10,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3778,
+            "negative_ratio": 0.6470588235294118,
+            "total_interactions": 34,
+            "negative_count": 22
+          },
+          {
+            "user_id": 3766,
+            "negative_ratio": 0.5263157894736842,
+            "total_interactions": 19,
+            "negative_count": 10
+          },
+          {
+            "user_id": 3761,
+            "negative_ratio": 0.875,
+            "total_interactions": 8,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3691,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3661,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3684,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3695,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3714,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3469,
+            "negative_ratio": 0.5,
+            "total_interactions": 8,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3768,
+            "negative_ratio": 0.75,
+            "total_interactions": 8,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3764,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3734,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3729,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3772,
+            "negative_ratio": 0.875,
+            "total_interactions": 8,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3759,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3762,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3782,
+            "negative_ratio": 0.9452054794520548,
+            "total_interactions": 73,
+            "negative_count": 69
+          },
+          {
+            "user_id": 3777,
+            "negative_ratio": 0.7894736842105263,
+            "total_interactions": 19,
+            "negative_count": 15
+          },
+          {
+            "user_id": 3779,
+            "negative_ratio": 0.875,
+            "total_interactions": 16,
+            "negative_count": 14
+          },
+          {
+            "user_id": 3776,
+            "negative_ratio": 0.7894736842105263,
+            "total_interactions": 19,
+            "negative_count": 15
+          },
+          {
+            "user_id": 3780,
+            "negative_ratio": 0.9411764705882353,
+            "total_interactions": 17,
+            "negative_count": 16
+          },
+          {
+            "user_id": 3687,
+            "negative_ratio": 0.5,
+            "total_interactions": 8,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3692,
+            "negative_ratio": 0.4444444444444444,
+            "total_interactions": 9,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3756,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3763,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3775,
+            "negative_ratio": 1.0,
+            "total_interactions": 9,
+            "negative_count": 9
+          },
+          {
+            "user_id": 3736,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3753,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3699,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3746,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3368,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3738,
+            "negative_ratio": 0.8,
+            "total_interactions": 10,
+            "negative_count": 8
+          },
+          {
+            "user_id": 3769,
+            "negative_ratio": 0.5294117647058824,
+            "total_interactions": 17,
+            "negative_count": 9
+          }
+        ],
+        "avg_trust_score": 1.3389514893293382,
+        "performance_metrics": {
+          "normal_avg_score": 1.3241659556997234,
+          "suspicious_avg_score": 1.7677319645881653,
+          "separation_ratio": 1.334977656674499,
+          "normal_periods": 58,
+          "suspicious_periods": 2
+        }
+      },
+      "otc": {
+        "anomaly_scores": [
+          {
+            "month": "2010-11",
+            "score": 0.75,
+            "negative_edges": 0,
+            "total_edges": 28,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2010-12",
+            "score": 0.7809373140335083,
+            "negative_edges": 0,
+            "total_edges": 34,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-01",
+            "score": 2.4814200401306152,
+            "negative_edges": 0,
+            "total_edges": 22,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-02",
+            "score": 3.9439055919647217,
+            "negative_edges": 0,
+            "total_edges": 111,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-03",
+            "score": 0.9349180459976196,
+            "negative_edges": 0,
+            "total_edges": 81,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-04",
+            "score": 2.779463768005371,
+            "negative_edges": 0,
+            "total_edges": 229,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-05",
+            "score": 3.778501510620117,
+            "negative_edges": 10,
+            "total_edges": 772,
+            "negative_ratio": 0.012953367875647668,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-06",
+            "score": 3.5591187477111816,
+            "negative_edges": 17,
+            "total_edges": 754,
+            "negative_ratio": 0.022546419098143235,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-07",
+            "score": 0.7488512992858887,
+            "negative_edges": 6,
+            "total_edges": 212,
+            "negative_ratio": 0.02830188679245283,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-08",
+            "score": 0.7165482640266418,
+            "negative_edges": 3,
+            "total_edges": 217,
+            "negative_ratio": 0.013824884792626729,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-09",
+            "score": 0.7865389585494995,
+            "negative_edges": 0,
+            "total_edges": 127,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-10",
+            "score": 0.8953638076782227,
+            "negative_edges": 2,
+            "total_edges": 108,
+            "negative_ratio": 0.018518518518518517,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-11",
+            "score": 0.8650473952293396,
+            "negative_edges": 3,
+            "total_edges": 127,
+            "negative_ratio": 0.023622047244094488,
+            "is_suspicious": false
+          },
+          {
+            "month": "2011-12",
+            "score": 0.6937825679779053,
+            "negative_edges": 0,
+            "total_edges": 206,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-01",
+            "score": 0.7611983418464661,
+            "negative_edges": 2,
+            "total_edges": 199,
+            "negative_ratio": 0.010050251256281407,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-02",
+            "score": 0.7080187201499939,
+            "negative_edges": 9,
+            "total_edges": 252,
+            "negative_ratio": 0.03571428571428571,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-03",
+            "score": 0.8080210089683533,
+            "negative_edges": 12,
+            "total_edges": 268,
+            "negative_ratio": 0.04477611940298507,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-04",
+            "score": 0.713522732257843,
+            "negative_edges": 8,
+            "total_edges": 272,
+            "negative_ratio": 0.029411764705882353,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-05",
+            "score": 1.659769058227539,
+            "negative_edges": 11,
+            "total_edges": 306,
+            "negative_ratio": 0.03594771241830065,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-06",
+            "score": 1.5931886434555054,
+            "negative_edges": 3,
+            "total_edges": 396,
+            "negative_ratio": 0.007575757575757576,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-07",
+            "score": 2.016906976699829,
+            "negative_edges": 13,
+            "total_edges": 450,
+            "negative_ratio": 0.028888888888888888,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-08",
+            "score": 1.6809028387069702,
+            "negative_edges": 16,
+            "total_edges": 456,
+            "negative_ratio": 0.03508771929824561,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-09",
+            "score": 2.838761329650879,
+            "negative_edges": 64,
+            "total_edges": 441,
+            "negative_ratio": 0.14512471655328799,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-10",
+            "score": 1.6861884593963623,
+            "negative_edges": 44,
+            "total_edges": 401,
+            "negative_ratio": 0.10972568578553615,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-11",
+            "score": 1.6035115718841553,
+            "negative_edges": 57,
+            "total_edges": 433,
+            "negative_ratio": 0.13163972286374134,
+            "is_suspicious": false
+          },
+          {
+            "month": "2012-12",
+            "score": 1.1637611389160156,
+            "negative_edges": 13,
+            "total_edges": 461,
+            "negative_ratio": 0.028199566160520606,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-01",
+            "score": 0.7000287771224976,
+            "negative_edges": 38,
+            "total_edges": 387,
+            "negative_ratio": 0.09819121447028424,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-02",
+            "score": 1.1177372932434082,
+            "negative_edges": 15,
+            "total_edges": 321,
+            "negative_ratio": 0.04672897196261682,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-03",
+            "score": 3.498457431793213,
+            "negative_edges": 136,
+            "total_edges": 653,
+            "negative_ratio": 0.2082695252679939,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-04",
+            "score": 1.6935186386108398,
+            "negative_edges": 64,
+            "total_edges": 667,
+            "negative_ratio": 0.095952023988006,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-05",
+            "score": 0.830340564250946,
+            "negative_edges": 42,
+            "total_edges": 552,
+            "negative_ratio": 0.07608695652173914,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-06",
+            "score": 0.7857452630996704,
+            "negative_edges": 28,
+            "total_edges": 444,
+            "negative_ratio": 0.06306306306306306,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-07",
+            "score": 1.2208435535430908,
+            "negative_edges": 108,
+            "total_edges": 557,
+            "negative_ratio": 0.19389587073608616,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-08",
+            "score": 3.9608116149902344,
+            "negative_edges": 545,
+            "total_edges": 1193,
+            "negative_ratio": 0.45683151718357085,
+            "is_suspicious": true
+          },
+          {
+            "month": "2013-09",
+            "score": 1.2378926277160645,
+            "negative_edges": 9,
+            "total_edges": 254,
+            "negative_ratio": 0.03543307086614173,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-10",
+            "score": 0.9002562165260315,
+            "negative_edges": 15,
+            "total_edges": 353,
+            "negative_ratio": 0.042492917847025496,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-11",
+            "score": 0.876096248626709,
+            "negative_edges": 14,
+            "total_edges": 409,
+            "negative_ratio": 0.034229828850855744,
+            "is_suspicious": false
+          },
+          {
+            "month": "2013-12",
+            "score": 0.9745992422103882,
+            "negative_edges": 50,
+            "total_edges": 310,
+            "negative_ratio": 0.16129032258064516,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-01",
+            "score": 1.2602003812789917,
+            "negative_edges": 7,
+            "total_edges": 194,
+            "negative_ratio": 0.03608247422680412,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-02",
+            "score": 0.9439111948013306,
+            "negative_edges": 24,
+            "total_edges": 233,
+            "negative_ratio": 0.10300429184549356,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-03",
+            "score": 0.9412454962730408,
+            "negative_edges": 21,
+            "total_edges": 163,
+            "negative_ratio": 0.12883435582822086,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-04",
+            "score": 0.751380980014801,
+            "negative_edges": 36,
+            "total_edges": 327,
+            "negative_ratio": 0.11009174311926606,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-05",
+            "score": 0.8539797067642212,
+            "negative_edges": 23,
+            "total_edges": 184,
+            "negative_ratio": 0.125,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-06",
+            "score": 0.8130142092704773,
+            "negative_edges": 28,
+            "total_edges": 205,
+            "negative_ratio": 0.13658536585365855,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-07",
+            "score": 1.0497881174087524,
+            "negative_edges": 23,
+            "total_edges": 163,
+            "negative_ratio": 0.1411042944785276,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-08",
+            "score": 1.0136098861694336,
+            "negative_edges": 48,
+            "total_edges": 244,
+            "negative_ratio": 0.19672131147540983,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-09",
+            "score": 1.2975573539733887,
+            "negative_edges": 24,
+            "total_edges": 117,
+            "negative_ratio": 0.20512820512820512,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-10",
+            "score": 1.4696500301361084,
+            "negative_edges": 7,
+            "total_edges": 128,
+            "negative_ratio": 0.0546875,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-11",
+            "score": 1.4868308305740356,
+            "negative_edges": 6,
+            "total_edges": 98,
+            "negative_ratio": 0.061224489795918366,
+            "is_suspicious": false
+          },
+          {
+            "month": "2014-12",
+            "score": 1.2274127006530762,
+            "negative_edges": 28,
+            "total_edges": 106,
+            "negative_ratio": 0.2641509433962264,
+            "is_suspicious": true
+          },
+          {
+            "month": "2015-01",
+            "score": 1.3221440315246582,
+            "negative_edges": 12,
+            "total_edges": 76,
+            "negative_ratio": 0.15789473684210525,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-02",
+            "score": 1.634002923965454,
+            "negative_edges": 3,
+            "total_edges": 51,
+            "negative_ratio": 0.058823529411764705,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-03",
+            "score": 1.3104485273361206,
+            "negative_edges": 7,
+            "total_edges": 53,
+            "negative_ratio": 0.1320754716981132,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-04",
+            "score": 1.3009305000305176,
+            "negative_edges": 1,
+            "total_edges": 58,
+            "negative_ratio": 0.017241379310344827,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-05",
+            "score": 1.1176306009292603,
+            "negative_edges": 3,
+            "total_edges": 68,
+            "negative_ratio": 0.04411764705882353,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-06",
+            "score": 1.0427147150039673,
+            "negative_edges": 2,
+            "total_edges": 60,
+            "negative_ratio": 0.03333333333333333,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-07",
+            "score": 1.4694831371307373,
+            "negative_edges": 0,
+            "total_edges": 27,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-08",
+            "score": 0.8866745233535767,
+            "negative_edges": 3,
+            "total_edges": 45,
+            "negative_ratio": 0.06666666666666667,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-09",
+            "score": 1.1004369258880615,
+            "negative_edges": 5,
+            "total_edges": 33,
+            "negative_ratio": 0.15151515151515152,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-10",
+            "score": 1.1403281688690186,
+            "negative_edges": 0,
+            "total_edges": 29,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-11",
+            "score": 1.4502431154251099,
+            "negative_edges": 0,
+            "total_edges": 18,
+            "negative_ratio": 0.0,
+            "is_suspicious": false
+          },
+          {
+            "month": "2015-12",
+            "score": 0.9052687883377075,
+            "negative_edges": 3,
+            "total_edges": 31,
+            "negative_ratio": 0.0967741935483871,
+            "is_suspicious": false
+          },
+          {
+            "month": "2016-01",
+            "score": 0.9856472015380859,
+            "negative_edges": 2,
+            "total_edges": 25,
+            "negative_ratio": 0.08,
+            "is_suspicious": false
+          }
+        ],
+        "temporal_evolution": [
+          0.75,
+          0.7809373140335083,
+          2.4814200401306152,
+          3.9439055919647217,
+          0.9349180459976196,
+          2.779463768005371,
+          3.778501510620117,
+          3.5591187477111816,
+          0.7488512992858887,
+          0.7165482640266418,
+          0.7865389585494995,
+          0.8953638076782227,
+          0.8650473952293396,
+          0.6937825679779053,
+          0.7611983418464661,
+          0.7080187201499939,
+          0.8080210089683533,
+          0.713522732257843,
+          1.659769058227539,
+          1.5931886434555054,
+          2.016906976699829,
+          1.6809028387069702,
+          2.838761329650879,
+          1.6861884593963623,
+          1.6035115718841553,
+          1.1637611389160156,
+          0.7000287771224976,
+          1.1177372932434082,
+          3.498457431793213,
+          1.6935186386108398,
+          0.830340564250946,
+          0.7857452630996704,
+          1.2208435535430908,
+          3.9608116149902344,
+          1.2378926277160645,
+          0.9002562165260315,
+          0.876096248626709,
+          0.9745992422103882,
+          1.2602003812789917,
+          0.9439111948013306,
+          0.9412454962730408,
+          0.751380980014801,
+          0.8539797067642212,
+          0.8130142092704773,
+          1.0497881174087524,
+          1.0136098861694336,
+          1.2975573539733887,
+          1.4696500301361084,
+          1.4868308305740356,
+          1.2274127006530762,
+          1.3221440315246582,
+          1.634002923965454,
+          1.3104485273361206,
+          1.3009305000305176,
+          1.1176306009292603,
+          1.0427147150039673,
+          1.4694831371307373,
+          0.8866745233535767,
+          1.1004369258880615,
+          1.1403281688690186,
+          1.4502431154251099,
+          0.9052687883377075,
+          0.9856472015380859
+        ],
+        "anomalous_users": [
+          {
+            "user_id": 2,
+            "negative_ratio": 0.42857142857142855,
+            "total_interactions": 21,
+            "negative_count": 9
+          },
+          {
+            "user_id": 140,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 370,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 270,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 432,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 15,
+            "negative_count": 10
+          },
+          {
+            "user_id": 783,
+            "negative_ratio": 0.5,
+            "total_interactions": 8,
+            "negative_count": 4
+          },
+          {
+            "user_id": 829,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 865,
+            "negative_ratio": 0.8888888888888888,
+            "total_interactions": 9,
+            "negative_count": 8
+          },
+          {
+            "user_id": 943,
+            "negative_ratio": 1.0,
+            "total_interactions": 5,
+            "negative_count": 5
+          },
+          {
+            "user_id": 1098,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 1102,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 1104,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 1113,
+            "negative_ratio": 0.4117647058823529,
+            "total_interactions": 17,
+            "negative_count": 7
+          },
+          {
+            "user_id": 1290,
+            "negative_ratio": 0.6875,
+            "total_interactions": 16,
+            "negative_count": 11
+          },
+          {
+            "user_id": 1341,
+            "negative_ratio": 0.46875,
+            "total_interactions": 96,
+            "negative_count": 45
+          },
+          {
+            "user_id": 1492,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 1602,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 1616,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 1710,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 1746,
+            "negative_ratio": 0.8181818181818182,
+            "total_interactions": 11,
+            "negative_count": 9
+          },
+          {
+            "user_id": 1707,
+            "negative_ratio": 0.5384615384615384,
+            "total_interactions": 13,
+            "negative_count": 7
+          },
+          {
+            "user_id": 1910,
+            "negative_ratio": 1.0,
+            "total_interactions": 7,
+            "negative_count": 7
+          },
+          {
+            "user_id": 1673,
+            "negative_ratio": 0.5,
+            "total_interactions": 10,
+            "negative_count": 5
+          },
+          {
+            "user_id": 1970,
+            "negative_ratio": 0.7333333333333333,
+            "total_interactions": 45,
+            "negative_count": 33
+          },
+          {
+            "user_id": 2042,
+            "negative_ratio": 0.5,
+            "total_interactions": 20,
+            "negative_count": 10
+          },
+          {
+            "user_id": 2048,
+            "negative_ratio": 0.875,
+            "total_interactions": 8,
+            "negative_count": 7
+          },
+          {
+            "user_id": 2213,
+            "negative_ratio": 1.0,
+            "total_interactions": 5,
+            "negative_count": 5
+          },
+          {
+            "user_id": 2294,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 9,
+            "negative_count": 6
+          },
+          {
+            "user_id": 2384,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2446,
+            "negative_ratio": 0.8,
+            "total_interactions": 45,
+            "negative_count": 36
+          },
+          {
+            "user_id": 2453,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2462,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2464,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2488,
+            "negative_ratio": 0.5,
+            "total_interactions": 12,
+            "negative_count": 6
+          },
+          {
+            "user_id": 2496,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2507,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 2513,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2514,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2515,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2517,
+            "negative_ratio": 0.42857142857142855,
+            "total_interactions": 7,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2520,
+            "negative_ratio": 0.5833333333333334,
+            "total_interactions": 12,
+            "negative_count": 7
+          },
+          {
+            "user_id": 2527,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2530,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2546,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2568,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2573,
+            "negative_ratio": 0.42857142857142855,
+            "total_interactions": 7,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2574,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2576,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2584,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2610,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2601,
+            "negative_ratio": 0.7,
+            "total_interactions": 10,
+            "negative_count": 7
+          },
+          {
+            "user_id": 2613,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2614,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2615,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2616,
+            "negative_ratio": 0.5555555555555556,
+            "total_interactions": 9,
+            "negative_count": 5
+          },
+          {
+            "user_id": 2620,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2626,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2624,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2627,
+            "negative_ratio": 0.5,
+            "total_interactions": 8,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2628,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2643,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2645,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2646,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2644,
+            "negative_ratio": 0.5555555555555556,
+            "total_interactions": 9,
+            "negative_count": 5
+          },
+          {
+            "user_id": 2648,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2656,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2665,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2701,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2721,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 9,
+            "negative_count": 6
+          },
+          {
+            "user_id": 2819,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 2821,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2840,
+            "negative_ratio": 0.4444444444444444,
+            "total_interactions": 9,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2823,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 2960,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 2962,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3114,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 3124,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 3204,
+            "negative_ratio": 0.4666666666666667,
+            "total_interactions": 15,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3245,
+            "negative_ratio": 0.875,
+            "total_interactions": 8,
+            "negative_count": 7
+          },
+          {
+            "user_id": 3264,
+            "negative_ratio": 0.8571428571428571,
+            "total_interactions": 7,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3271,
+            "negative_ratio": 0.625,
+            "total_interactions": 8,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3306,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3363,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3668,
+            "negative_ratio": 0.9259259259259259,
+            "total_interactions": 81,
+            "negative_count": 75
+          },
+          {
+            "user_id": 3680,
+            "negative_ratio": 0.8095238095238095,
+            "total_interactions": 21,
+            "negative_count": 17
+          },
+          {
+            "user_id": 3681,
+            "negative_ratio": 0.8095238095238095,
+            "total_interactions": 21,
+            "negative_count": 17
+          },
+          {
+            "user_id": 3683,
+            "negative_ratio": 0.875,
+            "total_interactions": 16,
+            "negative_count": 14
+          },
+          {
+            "user_id": 3684,
+            "negative_ratio": 0.9411764705882353,
+            "total_interactions": 17,
+            "negative_count": 16
+          },
+          {
+            "user_id": 3719,
+            "negative_ratio": 1.0,
+            "total_interactions": 5,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3718,
+            "negative_ratio": 1.0,
+            "total_interactions": 5,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3717,
+            "negative_ratio": 1.0,
+            "total_interactions": 5,
+            "negative_count": 5
+          },
+          {
+            "user_id": 3716,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3715,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3714,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3713,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3712,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3711,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3710,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 3995,
+            "negative_ratio": 0.5,
+            "total_interactions": 12,
+            "negative_count": 6
+          },
+          {
+            "user_id": 4168,
+            "negative_ratio": 0.75,
+            "total_interactions": 12,
+            "negative_count": 9
+          },
+          {
+            "user_id": 4194,
+            "negative_ratio": 0.5454545454545454,
+            "total_interactions": 11,
+            "negative_count": 6
+          },
+          {
+            "user_id": 4264,
+            "negative_ratio": 0.9285714285714286,
+            "total_interactions": 14,
+            "negative_count": 13
+          },
+          {
+            "user_id": 4320,
+            "negative_ratio": 0.5,
+            "total_interactions": 8,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4341,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4436,
+            "negative_ratio": 0.42857142857142855,
+            "total_interactions": 7,
+            "negative_count": 3
+          },
+          {
+            "user_id": 4443,
+            "negative_ratio": 0.96,
+            "total_interactions": 25,
+            "negative_count": 24
+          },
+          {
+            "user_id": 4372,
+            "negative_ratio": 0.4444444444444444,
+            "total_interactions": 9,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4555,
+            "negative_ratio": 0.7692307692307693,
+            "total_interactions": 13,
+            "negative_count": 10
+          },
+          {
+            "user_id": 4564,
+            "negative_ratio": 0.8,
+            "total_interactions": 25,
+            "negative_count": 20
+          },
+          {
+            "user_id": 4569,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4571,
+            "negative_ratio": 0.8571428571428571,
+            "total_interactions": 21,
+            "negative_count": 18
+          },
+          {
+            "user_id": 4576,
+            "negative_ratio": 0.8571428571428571,
+            "total_interactions": 21,
+            "negative_count": 18
+          },
+          {
+            "user_id": 4577,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 18,
+            "negative_count": 12
+          },
+          {
+            "user_id": 4578,
+            "negative_ratio": 0.9375,
+            "total_interactions": 16,
+            "negative_count": 15
+          },
+          {
+            "user_id": 4579,
+            "negative_ratio": 0.9375,
+            "total_interactions": 16,
+            "negative_count": 15
+          },
+          {
+            "user_id": 4582,
+            "negative_ratio": 0.9444444444444444,
+            "total_interactions": 18,
+            "negative_count": 17
+          },
+          {
+            "user_id": 4583,
+            "negative_ratio": 0.7083333333333334,
+            "total_interactions": 24,
+            "negative_count": 17
+          },
+          {
+            "user_id": 4585,
+            "negative_ratio": 0.7272727272727273,
+            "total_interactions": 22,
+            "negative_count": 16
+          },
+          {
+            "user_id": 4586,
+            "negative_ratio": 0.8421052631578947,
+            "total_interactions": 19,
+            "negative_count": 16
+          },
+          {
+            "user_id": 4587,
+            "negative_ratio": 0.8823529411764706,
+            "total_interactions": 17,
+            "negative_count": 15
+          },
+          {
+            "user_id": 4588,
+            "negative_ratio": 0.8,
+            "total_interactions": 20,
+            "negative_count": 16
+          },
+          {
+            "user_id": 4590,
+            "negative_ratio": 0.8095238095238095,
+            "total_interactions": 21,
+            "negative_count": 17
+          },
+          {
+            "user_id": 4589,
+            "negative_ratio": 0.8095238095238095,
+            "total_interactions": 21,
+            "negative_count": 17
+          },
+          {
+            "user_id": 4591,
+            "negative_ratio": 0.8181818181818182,
+            "total_interactions": 22,
+            "negative_count": 18
+          },
+          {
+            "user_id": 4592,
+            "negative_ratio": 0.8,
+            "total_interactions": 20,
+            "negative_count": 16
+          },
+          {
+            "user_id": 4593,
+            "negative_ratio": 0.5151515151515151,
+            "total_interactions": 33,
+            "negative_count": 17
+          },
+          {
+            "user_id": 4594,
+            "negative_ratio": 0.7,
+            "total_interactions": 20,
+            "negative_count": 14
+          },
+          {
+            "user_id": 4596,
+            "negative_ratio": 0.72,
+            "total_interactions": 25,
+            "negative_count": 18
+          },
+          {
+            "user_id": 4597,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4598,
+            "negative_ratio": 0.7391304347826086,
+            "total_interactions": 23,
+            "negative_count": 17
+          },
+          {
+            "user_id": 4608,
+            "negative_ratio": 0.6,
+            "total_interactions": 10,
+            "negative_count": 6
+          },
+          {
+            "user_id": 4611,
+            "negative_ratio": 0.8823529411764706,
+            "total_interactions": 17,
+            "negative_count": 15
+          },
+          {
+            "user_id": 4617,
+            "negative_ratio": 0.48484848484848486,
+            "total_interactions": 33,
+            "negative_count": 16
+          },
+          {
+            "user_id": 4618,
+            "negative_ratio": 0.625,
+            "total_interactions": 8,
+            "negative_count": 5
+          },
+          {
+            "user_id": 4639,
+            "negative_ratio": 1.0,
+            "total_interactions": 7,
+            "negative_count": 7
+          },
+          {
+            "user_id": 4643,
+            "negative_ratio": 0.4827586206896552,
+            "total_interactions": 29,
+            "negative_count": 14
+          },
+          {
+            "user_id": 4649,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 4653,
+            "negative_ratio": 0.875,
+            "total_interactions": 16,
+            "negative_count": 14
+          },
+          {
+            "user_id": 4654,
+            "negative_ratio": 0.9473684210526315,
+            "total_interactions": 19,
+            "negative_count": 18
+          },
+          {
+            "user_id": 4656,
+            "negative_ratio": 0.45454545454545453,
+            "total_interactions": 11,
+            "negative_count": 5
+          },
+          {
+            "user_id": 4657,
+            "negative_ratio": 1.0,
+            "total_interactions": 14,
+            "negative_count": 14
+          },
+          {
+            "user_id": 4658,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 4701,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4778,
+            "negative_ratio": 1.0,
+            "total_interactions": 7,
+            "negative_count": 7
+          },
+          {
+            "user_id": 4896,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 4899,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 4929,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 4935,
+            "negative_ratio": 0.75,
+            "total_interactions": 8,
+            "negative_count": 6
+          },
+          {
+            "user_id": 5022,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5102,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5104,
+            "negative_ratio": 0.75,
+            "total_interactions": 8,
+            "negative_count": 6
+          },
+          {
+            "user_id": 5100,
+            "negative_ratio": 0.7777777777777778,
+            "total_interactions": 9,
+            "negative_count": 7
+          },
+          {
+            "user_id": 5105,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 5107,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 5108,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5109,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5110,
+            "negative_ratio": 0.8,
+            "total_interactions": 5,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5124,
+            "negative_ratio": 1.0,
+            "total_interactions": 8,
+            "negative_count": 8
+          },
+          {
+            "user_id": 5144,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 5218,
+            "negative_ratio": 0.42857142857142855,
+            "total_interactions": 7,
+            "negative_count": 3
+          },
+          {
+            "user_id": 5273,
+            "negative_ratio": 0.6,
+            "total_interactions": 5,
+            "negative_count": 3
+          },
+          {
+            "user_id": 5377,
+            "negative_ratio": 0.8333333333333334,
+            "total_interactions": 6,
+            "negative_count": 5
+          },
+          {
+            "user_id": 5385,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5386,
+            "negative_ratio": 0.7142857142857143,
+            "total_interactions": 7,
+            "negative_count": 5
+          },
+          {
+            "user_id": 5406,
+            "negative_ratio": 0.5,
+            "total_interactions": 6,
+            "negative_count": 3
+          },
+          {
+            "user_id": 5456,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5477,
+            "negative_ratio": 1.0,
+            "total_interactions": 6,
+            "negative_count": 6
+          },
+          {
+            "user_id": 5509,
+            "negative_ratio": 0.42857142857142855,
+            "total_interactions": 7,
+            "negative_count": 3
+          },
+          {
+            "user_id": 5511,
+            "negative_ratio": 0.6666666666666666,
+            "total_interactions": 6,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5508,
+            "negative_ratio": 0.5714285714285714,
+            "total_interactions": 7,
+            "negative_count": 4
+          },
+          {
+            "user_id": 5549,
+            "negative_ratio": 0.8888888888888888,
+            "total_interactions": 9,
+            "negative_count": 8
+          },
+          {
+            "user_id": 5532,
+            "negative_ratio": 0.47619047619047616,
+            "total_interactions": 21,
+            "negative_count": 10
+          },
+          {
+            "user_id": 5682,
+            "negative_ratio": 0.75,
+            "total_interactions": 8,
+            "negative_count": 6
+          }
+        ],
+        "avg_trust_score": 1.3891906293611678,
+        "performance_metrics": {
+          "normal_avg_score": 1.3496850054772174,
+          "suspicious_avg_score": 2.5941121578216553,
+          "separation_ratio": 1.9220130232568133,
+          "normal_periods": 61,
+          "suspicious_periods": 2
+        }
+      }
+    },
+    "scalability_analysis": {
+      "50": {
+        "initialization_time": 0.4632909297943115,
+        "inference_time_per_graph": 3.572387671470642,
+        "total_parameters": 80364,
+        "memory_usage_mb": 0.3065643310546875,
+        "nodes": 50,
+        "edges_per_graph": 150
+      },
+      "100": {
+        "initialization_time": 0.202225923538208,
+        "inference_time_per_graph": 5.089837670326233,
+        "total_parameters": 167358,
+        "memory_usage_mb": 0.6384201049804688,
+        "nodes": 100,
+        "edges_per_graph": 300
+      },
+      "200": {
+        "initialization_time": 0.20498085021972656,
+        "inference_time_per_graph": 5.419792914390564,
+        "total_parameters": 579008,
+        "memory_usage_mb": 2.208740234375,
+        "nodes": 200,
+        "edges_per_graph": 600
+      },
+      "500": {
+        "initialization_time": 0.46903085708618164,
+        "inference_time_per_graph": 20.94290714263916,
+        "total_parameters": 3408542,
+        "memory_usage_mb": 13.002555847167969,
+        "nodes": 500,
+        "edges_per_graph": 1500
+      }
+    },
+    "hyperparameter_sensitivity": {
+      "hidden_dim": {
+        "32": {
+          "separation_ratio": 0.8745633761088053,
+          "normal_score": 0.75,
+          "anomaly_score": 0.655922532081604
+        },
+        "64": {
+          "separation_ratio": 1.0642259915669758,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7981694936752319
+        },
+        "128": {
+          "separation_ratio": 0.9522180557250977,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7141635417938232
+        },
+        "256": {
+          "separation_ratio": 0.9837484359741211,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7378113269805908
+        }
+      },
+      "embedding_dim": {
+        "16": {
+          "separation_ratio": 0.961378256479899,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7210336923599243
+        },
+        "32": {
+          "separation_ratio": 1.0859659512837727,
+          "normal_score": 0.75,
+          "anomaly_score": 0.8144744634628296
+        },
+        "64": {
+          "separation_ratio": 1.0107903480529785,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7580927610397339
+        },
+        "128": {
+          "separation_ratio": 1.031184991200765,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7733887434005737
+        }
+      },
+      "learning_rate": {
+        "0.0001": {
+          "separation_ratio": 0.9398449261983236,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7048836946487427
+        },
+        "0.0005": {
+          "separation_ratio": 0.9387216567993164,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7040412425994873
+        },
+        "0.001": {
+          "separation_ratio": 0.9968264897664388,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7476198673248291
+        },
+        "0.005": {
+          "separation_ratio": 1.045340855916341,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7840056419372559
+        }
+      },
+      "memory_update_rate": {
+        "0.1": {
+          "separation_ratio": 0.9718743960062662,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7289057970046997
+        },
+        "0.3": {
+          "separation_ratio": 0.9898859659830729,
+          "normal_score": 0.75,
+          "anomaly_score": 0.7424144744873047
+        },
+        "0.5": {
+          "separation_ratio": 1.0724442799886067,
+          "normal_score": 0.75,
+          "anomaly_score": 0.8043332099914551
+        },
+        "0.7": {
+          "separation_ratio": 1.0428357124328613,
+          "normal_score": 0.75,
+          "anomaly_score": 0.782126784324646
+        }
+      }
+    },
+    "cross_validation": {
+      "separation_ratios": [
+        0.9045776007410635,
+        0.8876439844890712,
+        0.787552157160439,
+        0.9109573306872222,
+        0.863731261306269,
+        0.8193096722989812,
+        0.8738523155663875,
+        0.8630201044386582,
+        0.8913571927648217,
+        0.8133433594022434
+      ],
+      "normal_scores": [
+        0.75,
+        0.7630444765090942,
+        3.4146597385406494,
+        1.6474816799163818,
+        1.5168651342391968,
+        1.2413471937179565,
+        1.3327953815460205,
+        1.1769049167633057,
+        1.1157186031341553,
+        1.270174264907837,
+        0.75,
+        0.7567852735519409,
+        3.928180456161499,
+        1.4962151050567627,
+        1.3786256313323975,
+        1.2638301849365234,
+        1.1312774419784546,
+        1.2497718334197998,
+        1.2155930995941162,
+        1.1176551580429077,
+        0.75,
+        0.7083207368850708,
+        3.816241502761841,
+        1.5735712051391602,
+        1.389190435409546,
+        1.1338156461715698,
+        1.2651679515838623,
+        1.178128957748413,
+        0.970243513584137,
+        1.0962245464324951,
+        0.75,
+        0.7360125780105591,
+        3.2936787605285645,
+        1.4904597997665405,
+        1.3349239826202393,
+        1.1556140184402466,
+        1.3087108135223389,
+        1.2591079473495483,
+        1.1464896202087402,
+        1.1553165912628174,
+        0.75,
+        0.8110299110412598,
+        3.5511653423309326,
+        1.8201466798782349,
+        1.6535511016845703,
+        1.219992995262146,
+        1.2621504068374634,
+        1.1466386318206787,
+        1.440840721130371,
+        1.1093437671661377,
+        0.75,
+        0.7441363334655762,
+        3.8701303005218506,
+        1.665959358215332,
+        1.4320054054260254,
+        1.2863600254058838,
+        1.1632087230682373,
+        1.1205239295959473,
+        1.033966064453125,
+        1.1174685955047607,
+        0.75,
+        0.7390443086624146,
+        2.667245864868164,
+        2.3324248790740967,
+        1.765904188156128,
+        1.1843510866165161,
+        1.2223857641220093,
+        1.0322678089141846,
+        1.0865243673324585,
+        1.0628118515014648,
+        0.75,
+        0.7388108968734741,
+        3.8923707008361816,
+        1.2803444862365723,
+        1.3118517398834229,
+        1.212218165397644,
+        1.1643006801605225,
+        1.1904442310333252,
+        1.0104060173034668,
+        1.1594334840774536,
+        0.75,
+        0.6925337314605713,
+        3.6977243423461914,
+        1.353058099746704,
+        1.3057622909545898,
+        1.349932312965393,
+        1.2197986841201782,
+        1.1457253694534302,
+        1.0476007461547852,
+        1.3464891910552979,
+        0.75,
+        0.7335069179534912,
+        3.893836259841919,
+        1.8320772647857666,
+        1.3313214778900146,
+        1.0082517862319946,
+        1.240642786026001,
+        1.1380579471588135,
+        1.1070822477340698,
+        1.0887993574142456
+      ],
+      "anomaly_scores": [
+        2.2643918991088867,
+        1.0450515747070312,
+        0.9900400042533875,
+        1.064462423324585,
+        1.1787155866622925,
+        1.360547661781311,
+        1.110823631286621,
+        1.2829487323760986,
+        1.8773705959320068,
+        1.175692081451416,
+        1.1342971324920654,
+        1.2612574100494385,
+        1.314315676689148,
+        1.0651750564575195,
+        1.200929045677185,
+        1.117042064666748,
+        1.7083356380462646,
+        1.0581742525100708,
+        1.0284514427185059,
+        1.02375328540802,
+        1.152596354484558,
+        0.97812819480896,
+        0.9099004864692688,
+        0.8862093687057495,
+        1.7974998950958252,
+        1.113911747932434,
+        1.2268719673156738,
+        1.126617431640625,
+        1.072345495223999,
+        1.2110347747802734,
+        1.203395962715149,
+        1.1816303730010986,
+        2.123224973678589,
+        1.0893508195877075,
+        1.0520460605621338,
+        1.118855595588684,
+        1.4282422065734863,
+        1.0486085414886475,
+        1.1718692779541016,
+        1.170099139213562,
+        1.8102905750274658,
+        1.2424777746200562,
+        1.1077687740325928,
+        1.1723369359970093,
+        0.9748684167861938,
+        0.9643853902816772,
+        1.0744044780731201,
+        0.9501802325248718,
+        1.9491703510284424,
+        1.19609534740448,
+        0.9407480955123901,
+        1.131605625152588,
+        1.0659059286117554,
+        1.1290836334228516,
+        1.1303571462631226,
+        1.1343960762023926,
+        2.0816855430603027,
+        0.9705305695533752,
+        1.0512961149215698,
+        1.0975803136825562,
+        1.166314959526062,
+        0.9937741756439209,
+        1.062596321105957,
+        1.041951060295105,
+        2.098566770553589,
+        1.0695724487304688,
+        1.0988448858261108,
+        1.2523000240325928,
+        1.1881657838821411,
+        0.9729459285736084,
+        1.16676664352417,
+        1.0708796977996826,
+        1.7291433811187744,
+        1.3435890674591064,
+        0.9651156663894653,
+        1.1240030527114868,
+        1.0462169647216797,
+        0.8949636220932007,
+        1.0979547500610352,
+        0.988866925239563
+      ],
+      "seed_results": {
+        "42": {
+          "separation_ratio": 0.9045776007410635,
+          "normal_scores": [
+            0.75,
+            0.7630444765090942,
+            3.4146597385406494,
+            1.6474816799163818,
+            1.5168651342391968,
+            1.2413471937179565,
+            1.3327953815460205,
+            1.1769049167633057,
+            1.1157186031341553,
+            1.270174264907837
+          ],
+          "anomaly_scores": [
+            2.2643918991088867,
+            1.0450515747070312,
+            0.9900400042533875,
+            1.064462423324585,
+            1.1787155866622925,
+            1.360547661781311,
+            1.110823631286621,
+            1.2829487323760986
+          ],
+          "normal_mean": 1.4228991389274597,
+          "anomaly_mean": 1.2871226891875267
+        },
+        "123": {
+          "separation_ratio": 0.8876439844890712,
+          "normal_scores": [
+            0.75,
+            0.7567852735519409,
+            3.928180456161499,
+            1.4962151050567627,
+            1.3786256313323975,
+            1.2638301849365234,
+            1.1312774419784546,
+            1.2497718334197998,
+            1.2155930995941162,
+            1.1176551580429077
+          ],
+          "anomaly_scores": [
+            1.8773705959320068,
+            1.175692081451416,
+            1.1342971324920654,
+            1.2612574100494385,
+            1.314315676689148,
+            1.0651750564575195,
+            1.200929045677185,
+            1.117042064666748
+          ],
+          "normal_mean": 1.4287934184074402,
+          "anomaly_mean": 1.268259882926941
+        },
+        "456": {
+          "separation_ratio": 0.787552157160439,
+          "normal_scores": [
+            0.75,
+            0.7083207368850708,
+            3.816241502761841,
+            1.5735712051391602,
+            1.389190435409546,
+            1.1338156461715698,
+            1.2651679515838623,
+            1.178128957748413,
+            0.970243513584137,
+            1.0962245464324951
+          ],
+          "anomaly_scores": [
+            1.7083356380462646,
+            1.0581742525100708,
+            1.0284514427185059,
+            1.02375328540802,
+            1.152596354484558,
+            0.97812819480896,
+            0.9099004864692688,
+            0.8862093687057495
+          ],
+          "normal_mean": 1.3880904495716095,
+          "anomaly_mean": 1.0931936278939247
+        },
+        "789": {
+          "separation_ratio": 0.9109573306872222,
+          "normal_scores": [
+            0.75,
+            0.7360125780105591,
+            3.2936787605285645,
+            1.4904597997665405,
+            1.3349239826202393,
+            1.1556140184402466,
+            1.3087108135223389,
+            1.2591079473495483,
+            1.1464896202087402,
+            1.1553165912628174
+          ],
+          "anomaly_scores": [
+            1.7974998950958252,
+            1.113911747932434,
+            1.2268719673156738,
+            1.126617431640625,
+            1.072345495223999,
+            1.2110347747802734,
+            1.203395962715149,
+            1.1816303730010986
+          ],
+          "normal_mean": 1.3630314111709594,
+          "anomaly_mean": 1.2416634559631348
+        },
+        "999": {
+          "separation_ratio": 0.863731261306269,
+          "normal_scores": [
+            0.75,
+            0.8110299110412598,
+            3.5511653423309326,
+            1.8201466798782349,
+            1.6535511016845703,
+            1.219992995262146,
+            1.2621504068374634,
+            1.1466386318206787,
+            1.440840721130371,
+            1.1093437671661377
+          ],
+          "anomaly_scores": [
+            2.123224973678589,
+            1.0893508195877075,
+            1.0520460605621338,
+            1.118855595588684,
+            1.4282422065734863,
+            1.0486085414886475,
+            1.1718692779541016,
+            1.170099139213562
+          ],
+          "normal_mean": 1.4764859557151795,
+          "anomaly_mean": 1.275287076830864
+        },
+        "1337": {
+          "separation_ratio": 0.8193096722989812,
+          "normal_scores": [
+            0.75,
+            0.7441363334655762,
+            3.8701303005218506,
+            1.665959358215332,
+            1.4320054054260254,
+            1.2863600254058838,
+            1.1632087230682373,
+            1.1205239295959473,
+            1.033966064453125,
+            1.1174685955047607
+          ],
+          "anomaly_scores": [
+            1.8102905750274658,
+            1.2424777746200562,
+            1.1077687740325928,
+            1.1723369359970093,
+            0.9748684167861938,
+            0.9643853902816772,
+            1.0744044780731201,
+            0.9501802325248718
+          ],
+          "normal_mean": 1.4183758735656737,
+          "anomaly_mean": 1.1620890721678734
+        },
+        "2021": {
+          "separation_ratio": 0.8738523155663875,
+          "normal_scores": [
+            0.75,
+            0.7390443086624146,
+            2.667245864868164,
+            2.3324248790740967,
+            1.765904188156128,
+            1.1843510866165161,
+            1.2223857641220093,
+            1.0322678089141846,
+            1.0865243673324585,
+            1.0628118515014648
+          ],
+          "anomaly_scores": [
+            1.9491703510284424,
+            1.19609534740448,
+            0.9407480955123901,
+            1.131605625152588,
+            1.0659059286117554,
+            1.1290836334228516,
+            1.1303571462631226,
+            1.1343960762023926
+          ],
+          "normal_mean": 1.3842960119247436,
+          "anomaly_mean": 1.2096702754497528
+        },
+        "2024": {
+          "separation_ratio": 0.8630201044386582,
+          "normal_scores": [
+            0.75,
+            0.7388108968734741,
+            3.8923707008361816,
+            1.2803444862365723,
+            1.3118517398834229,
+            1.212218165397644,
+            1.1643006801605225,
+            1.1904442310333252,
+            1.0104060173034668,
+            1.1594334840774536
+          ],
+          "anomaly_scores": [
+            2.0816855430603027,
+            0.9705305695533752,
+            1.0512961149215698,
+            1.0975803136825562,
+            1.166314959526062,
+            0.9937741756439209,
+            1.062596321105957,
+            1.041951060295105
+          ],
+          "normal_mean": 1.3710180401802063,
+          "anomaly_mean": 1.183216132223606
+        },
+        "3141": {
+          "separation_ratio": 0.8913571927648217,
+          "normal_scores": [
+            0.75,
+            0.6925337314605713,
+            3.6977243423461914,
+            1.353058099746704,
+            1.3057622909545898,
+            1.349932312965393,
+            1.2197986841201782,
+            1.1457253694534302,
+            1.0476007461547852,
+            1.3464891910552979
+          ],
+          "anomaly_scores": [
+            2.098566770553589,
+            1.0695724487304688,
+            1.0988448858261108,
+            1.2523000240325928,
+            1.1881657838821411,
+            0.9729459285736084,
+            1.16676664352417,
+            1.0708796977996826
+          ],
+          "normal_mean": 1.390862476825714,
+          "anomaly_mean": 1.2397552728652954
+        },
+        "9999": {
+          "separation_ratio": 0.8133433594022434,
+          "normal_scores": [
+            0.75,
+            0.7335069179534912,
+            3.893836259841919,
+            1.8320772647857666,
+            1.3313214778900146,
+            1.0082517862319946,
+            1.240642786026001,
+            1.1380579471588135,
+            1.1070822477340698,
+            1.0887993574142456
+          ],
+          "anomaly_scores": [
+            1.7291433811187744,
+            1.3435890674591064,
+            0.9651156663894653,
+            1.1240030527114868,
+            1.0462169647216797,
+            0.8949636220932007,
+            1.0979547500610352,
+            0.988866925239563
+          ],
+          "normal_mean": 1.4123576045036317,
+          "anomaly_mean": 1.148731678724289
+        }
+      },
+      "statistics": {
+        "separation_mean": 0.8615344978855157,
+        "separation_std": 0.03950176378113938,
+        "separation_range": [
+          0.787552157160439,
+          0.9109573306872222
+        ],
+        "coefficient_variation": 0.04585047247450855,
+        "normal_mean": 1.4056210380792618,
+        "anomaly_mean": 1.2108989164233208,
+        "normal_std": 0.7947645127931252,
+        "anomaly_std": 0.30228786745514413
+      }
+    }
+  }
+}

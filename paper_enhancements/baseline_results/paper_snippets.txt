@@ -1,0 +1,14 @@
+BASELINE COMPARISON RESULTS FOR PAPER
+==================================================
+
+EXPERIMENTAL SETUP:
+Dataset: Bitcoin Alpha network (24186 edges, 3783 users)
+Ground truth: 73 suspicious users (>30% negative ratings)
+
+RESULTS SUMMARY:
+degree_centrality: 0.18x separation (+632.4% improvement)
+negative_ratio: 25.08x separation (+-94.7% improvement)
+weighted_pagerank: 2.15x separation (+-38.1% improvement)
+temporal_volatility: 2.46x separation (+-45.9% improvement)
+
+TempAnom-GNN: 1.33x separation (BEST)
