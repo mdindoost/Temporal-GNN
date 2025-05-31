@@ -359,4 +359,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - 📊 [Experimental Results](results/)
 - 🛠️ [Implementation Guide](docs/implementation.md)
 - 📚 [Research Notes](docs/research_notes.md)
-- 🎯 [KDD 2025 Submission](https://kdd.org/kdd2025/)
+- 🎯 [2025 Submission](https://)
