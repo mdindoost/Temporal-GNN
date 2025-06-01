@@ -1,0 +1,6 @@
+Evaluation Type,Method,Metric,Performance,Use Case,Notes
+Retrospective,Negative Ratio,Separation Ratio,25.08×,Historical analysis,Best for complete data
+Retrospective,TempAnom-GNN,Separation Ratio,1.33×,Real-time deployment,Deployment-focused
+Early Detection,TempAnom-GNN,Improvement,+20.8% (p < 0.001),Prospective detection,"95% CI: (0.171, 0.246)"
+Cold Start,TempAnom-GNN,Improvement,+13.2% (p < 0.01),New user evaluation,"95% CI: (0.055, 0.209)"
+Component Analysis,Evolution Only,Precision@10,0.283 ± 0.162,Architecture design,Best component for deployment

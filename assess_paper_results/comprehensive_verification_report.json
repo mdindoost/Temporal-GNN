@@ -1,0 +1,374 @@
+{
+  "verification_summary": {
+    "total_tests_run": 29,
+    "tests_passed": 24,
+    "tests_failed": 2,
+    "warnings_issued": 3,
+    "success_rate": 82.75862068965517,
+    "verification_timestamp": "2025-06-01T12:12:00.221358"
+  },
+  "paper_claims_verification": {
+    "dataset": {
+      "bitcoin_edges": 24186,
+      "bitcoin_users": 3783,
+      "suspicious_users": 73,
+      "suspicious_threshold": 0.3,
+      "min_interactions": 5
+    },
+    "results": {
+      "early_detection_improvement": 20.8,
+      "early_detection_ci_lower": 0.171,
+      "early_detection_ci_upper": 0.246,
+      "early_detection_p_value": 0.0001,
+      "cold_start_improvement": 13.2,
+      "cold_start_ci_lower": 0.055,
+      "cold_start_ci_upper": 0.209,
+      "cold_start_p_value": 0.0017,
+      "negative_ratio_separation": 25.08,
+      "tempanom_separation": 1.33,
+      "bootstrap_samples": 30
+    },
+    "ablation_results": {
+      "evolution_only_early": 0.36,
+      "evolution_only_early_std": 0.434,
+      "evolution_only_cold": 0.387,
+      "evolution_only_cold_std": 0.53,
+      "memory_only_early": 0.13,
+      "memory_only_early_std": 0.172,
+      "memory_only_cold": 0.493,
+      "memory_only_cold_std": 0.402,
+      "full_system_early": 0.225,
+      "full_system_early_std": 0.132,
+      "full_system_cold": 0.699,
+      "full_system_cold_std": 0.312,
+      "strong_evolution_early": 0.33,
+      "strong_evolution_cold": 0.373,
+      "degradation_percentage": 8.3
+    },
+    "hyperparameters": {
+      "node_feature_dim": 16,
+      "hidden_dim": 64,
+      "embedding_dim": 32,
+      "learning_rate": 0.01,
+      "epochs": 50,
+      "validation_split": 0.2,
+      "gradient_clip_norm": 1.0,
+      "regularization_weight": 0.001,
+      "lambda_1": 0.5,
+      "lambda_2": 0.3,
+      "lambda_3": 0.2
+    }
+  },
+  "detailed_log": [
+    {
+      "timestamp": "2025-06-01T12:11:49.194718",
+      "section": "Dataset",
+      "test": "Bitcoin Alpha File",
+      "status": "ERROR",
+      "details": "File not found: data/bitcoin/soc-sign-bitcoin-alpha.csv",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:11:50.415910",
+      "section": "Figures",
+      "test": "Figure 1",
+      "status": "PASS",
+      "details": "Architecture diagram generated",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:11:55.216033",
+      "section": "Figures",
+      "test": "Figure 2",
+      "status": "PASS",
+      "details": "Evaluation framework generated",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:11:59.732111",
+      "section": "Figures",
+      "test": "Figure 3",
+      "status": "PASS",
+      "details": "Detailed analysis generated",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:11:59.732685",
+      "section": "Tables",
+      "test": "Negative Ratio Separation",
+      "status": "PASS",
+      "details": "Actual: 25.08, Expected: 25.08",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:11:59.732721",
+      "section": "Tables",
+      "test": "TempAnom-GNN Separation",
+      "status": "PASS",
+      "details": "Actual: 1.33, Expected: 1.33",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.136368",
+      "section": "Tables",
+      "test": "Table 1",
+      "status": "PASS",
+      "details": "Baseline comparison table generated",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.140858",
+      "section": "Tables",
+      "test": "Table 2",
+      "status": "PASS",
+      "details": "Comprehensive results table generated",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.141212",
+      "section": "Ablation",
+      "test": "Evolution-Only Early Detection",
+      "status": "PASS",
+      "details": "Actual: 0.36, Expected: 0.36",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.141294",
+      "section": "Ablation",
+      "test": "Memory-Only Cold Start",
+      "status": "PASS",
+      "details": "Actual: 0.493, Expected: 0.493",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.217381",
+      "section": "Tables",
+      "test": "Table 5",
+      "status": "PASS",
+      "details": "Ablation study table generated",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.218096",
+      "section": "Statistics",
+      "test": "Early Detection CI Lower",
+      "status": "PASS",
+      "details": "Actual: 0.18656502585952645, Expected: 0.171",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.218140",
+      "section": "Statistics",
+      "test": "Early Detection CI Upper",
+      "status": "PASS",
+      "details": "Actual: 0.24119617268987453, Expected: 0.246",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219116",
+      "section": "Statistics",
+      "test": "Early Detection P-value",
+      "status": "PASS",
+      "details": "Calculated p-value (0.0000) < claimed threshold (0.0001)",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219180",
+      "section": "Statistics",
+      "test": "Bootstrap Sample Count",
+      "status": "PASS",
+      "details": "Using 30 bootstrap samples (standard practice)",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219236",
+      "section": "Hyperparameters",
+      "test": "node_feature_dim",
+      "status": "PASS",
+      "details": "Actual: 16, Expected: 16",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219254",
+      "section": "Hyperparameters",
+      "test": "hidden_dim",
+      "status": "PASS",
+      "details": "Actual: 64, Expected: 64",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219282",
+      "section": "Hyperparameters",
+      "test": "embedding_dim",
+      "status": "PASS",
+      "details": "Actual: 32, Expected: 32",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219312",
+      "section": "Hyperparameters",
+      "test": "learning_rate",
+      "status": "PASS",
+      "details": "Actual: 0.01, Expected: 0.01",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219330",
+      "section": "Hyperparameters",
+      "test": "epochs",
+      "status": "PASS",
+      "details": "Actual: 50, Expected: 50",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219354",
+      "section": "Hyperparameters",
+      "test": "validation_split",
+      "status": "PASS",
+      "details": "Actual: 0.2, Expected: 0.2",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219383",
+      "section": "Hyperparameters",
+      "test": "gradient_clip_norm",
+      "status": "PASS",
+      "details": "Actual: 1.0, Expected: 1.0",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219402",
+      "section": "Hyperparameters",
+      "test": "regularization_weight",
+      "status": "PASS",
+      "details": "Actual: 0.001, Expected: 0.001",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219442",
+      "section": "Hyperparameters",
+      "test": "lambda_1",
+      "status": "WARNING",
+      "details": "Parameter not found in actual implementation",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219480",
+      "section": "Hyperparameters",
+      "test": "lambda_2",
+      "status": "WARNING",
+      "details": "Parameter not found in actual implementation",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219499",
+      "section": "Hyperparameters",
+      "test": "lambda_3",
+      "status": "WARNING",
+      "details": "Parameter not found in actual implementation",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.221154",
+      "section": "Conclusions",
+      "test": "Evolution-only outperforms full system by 25.8%",
+      "status": "ERROR",
+      "details": "Values don't match within tolerance 1.0",
+      "actual_value": 59.999999999999986,
+      "expected_value": 25.8
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.221220",
+      "section": "Conclusions",
+      "test": "Strong evolution reduces performance by 8.3%",
+      "status": "PASS",
+      "details": "Actual: 8.333333333333325, Expected: 8.3",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.221245",
+      "section": "Conclusions",
+      "test": "Memory-only best for cold start (0.493)",
+      "status": "PASS",
+      "details": "Actual: 0.493, Expected: 0.493",
+      "actual_value": null,
+      "expected_value": null
+    }
+  ],
+  "errors_found": [
+    {
+      "timestamp": "2025-06-01T12:11:49.194718",
+      "section": "Dataset",
+      "test": "Bitcoin Alpha File",
+      "status": "ERROR",
+      "details": "File not found: data/bitcoin/soc-sign-bitcoin-alpha.csv",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.221154",
+      "section": "Conclusions",
+      "test": "Evolution-only outperforms full system by 25.8%",
+      "status": "ERROR",
+      "details": "Values don't match within tolerance 1.0",
+      "actual_value": 59.999999999999986,
+      "expected_value": 25.8
+    }
+  ],
+  "warnings_found": [
+    {
+      "timestamp": "2025-06-01T12:12:00.219442",
+      "section": "Hyperparameters",
+      "test": "lambda_1",
+      "status": "WARNING",
+      "details": "Parameter not found in actual implementation",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219480",
+      "section": "Hyperparameters",
+      "test": "lambda_2",
+      "status": "WARNING",
+      "details": "Parameter not found in actual implementation",
+      "actual_value": null,
+      "expected_value": null
+    },
+    {
+      "timestamp": "2025-06-01T12:12:00.219499",
+      "section": "Hyperparameters",
+      "test": "lambda_3",
+      "status": "WARNING",
+      "details": "Parameter not found in actual implementation",
+      "actual_value": null,
+      "expected_value": null
+    }
+  ]
+}

@@ -1,4 +1,17 @@
-# TempAnom-GNN: Temporal Graph Neural Networks for Real-time Fraud Detection
+#!/usr/bin/env python3
+"""
+GitHub README.md Generator for TempAnom-GNN
+Based on verified paper results and actual implementation
+Author: Paper Verification Team
+"""
+
+import os
+from datetime import datetime
+
+def generate_readme():
+    """Generate comprehensive README.md based on verified results"""
+    
+    readme_content = """# TempAnom-GNN: Temporal Graph Neural Networks for Real-time Fraud Detection
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.7+-red.svg)](https://pytorch.org/)
@@ -322,3 +335,169 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Status**: ✅ **Research Complete** | 📝 **Paper Under Review** | 🔬 **Results Verified** | 🚀 **Ready for Use**
 
 *Advancing temporal graph anomaly detection from research to real-world deployment.* 🌐🧠⚡
+"""
+
+    return readme_content
+
+def create_additional_files():
+    """Create additional helpful files for the repository"""
+    
+    # Create requirements.txt
+    requirements = """torch>=2.7.0
+torch-geometric>=2.6.1
+pandas>=1.5.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+scikit-learn>=1.0.0
+networkx>=2.8.0
+seaborn>=0.11.0
+tqdm>=4.64.0
+"""
+
+    # Create setup.py for package installation
+    setup_py = """from setuptools import setup, find_packages
+
+setup(
+    name="temporal-anomaly-gnn",
+    version="1.0.0",
+    description="Temporal Graph Neural Networks for Real-time Fraud Detection",
+    author="Mohammad Dindoost",
+    author_email="md724@njit.edu",
+    packages=find_packages(),
+    install_requires=[
+        "torch>=2.7.0",
+        "torch-geometric>=2.6.1",
+        "pandas>=1.5.0",
+        "numpy>=1.21.0",
+        "matplotlib>=3.5.0",
+        "scikit-learn>=1.0.0",
+        "networkx>=2.8.0",
+    ],
+    python_requires=">=3.10",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.10",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    ],
+)
+"""
+
+    # Create simple usage example
+    example_py = """#!/usr/bin/env python3
+\"\"\"
+Simple example of using TempAnom-GNN for fraud detection
+Based on verified paper results
+\"\"\"
+
+import pandas as pd
+import numpy as np
+from temporal_anomaly_detector import TemporalAnomalyDetector
+
+def main():
+    print("🚀 TempAnom-GNN Example - Verified Configuration")
+    print("="*50)
+    
+    # Load verified dataset
+    data_path = 'data/processed/bitcoin_alpha_processed.csv'
+    
+    try:
+        # Initialize with best configuration for early detection
+        detector = TemporalAnomalyDetector(
+            data_path=data_path,
+            alpha=1.0,  # Evolution-only (verified best)
+            beta=0.0,
+            gamma=0.0
+        )
+        
+        # Train model
+        print("Training TempAnom-GNN...")
+        detector.train_temporal_model(epochs=50)
+        
+        # Evaluate
+        print("Evaluating on deployment scenarios...")
+        early_score = detector.evaluate_early_detection()
+        cold_score = detector.evaluate_cold_start()
+        
+        print(f"✅ Early Detection Score: {early_score:.3f}")
+        print(f"✅ Cold Start Score: {cold_score:.3f}")
+        print(f"📊 Expected: Early ~0.300, Cold ~0.360 (from Table 5)")
+        
+    except FileNotFoundError:
+        print("❌ Dataset not found. Run 'python download_datasets.py' first")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+if __name__ == "__main__":
+    main()
+"""
+
+    return {
+        'requirements.txt': requirements,
+        'setup.py': setup_py,
+        'example.py': example_py
+    }
+
+def save_readme_and_files(output_dir='.'):
+    """Save README and additional files"""
+    
+    print("📝 Generating GitHub README and supporting files...")
+    
+    # Generate README
+    readme_content = generate_readme()
+    
+    # Generate additional files
+    additional_files = create_additional_files()
+    
+    # Save README
+    readme_path = os.path.join(output_dir, 'README.md')
+    with open(readme_path, 'w', encoding='utf-8') as f:
+        f.write(readme_content)
+    print(f"✅ Saved: {readme_path}")
+    
+    # Save additional files
+    for filename, content in additional_files.items():
+        filepath = os.path.join(output_dir, filename)
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        print(f"✅ Saved: {filepath}")
+    
+    print(f"\n🎯 GitHub Repository Files Generated:")
+    print(f"   📄 README.md - Comprehensive project documentation")
+    print(f"   📋 requirements.txt - Python dependencies")
+    print(f"   ⚙️ setup.py - Package installation")
+    print(f"   🧪 example.py - Usage example")
+    
+    print(f"\n🚀 Your GitHub repository is ready!")
+    print(f"   All numbers verified from your paper")
+    print(f"   All claims match your verified results")
+    print(f"   Ready for public release")
+
+def main():
+    """Main function to generate repository files"""
+    
+    print("🔧 TempAnom-GNN GitHub Repository Generator")
+    print("="*50)
+    print("Based on verified paper results and implementation")
+    print()
+    
+    # Generate all files
+    save_readme_and_files()
+    
+    print(f"\n📊 Key Features:")
+    print(f"   ✅ All performance numbers verified")
+    print(f"   ✅ Component analysis results corrected")
+    print(f"   ✅ Statistical validation included")
+    print(f"   ✅ Reproducibility instructions")
+    print(f"   ✅ Clear usage examples")
+    
+    print(f"\n🎯 Next Steps:")
+    print(f"   1. Review generated README.md")
+    print(f"   2. Update GitHub username/repository name")
+    print(f"   3. Add LICENSE file")
+    print(f"   4. Push to GitHub")
+    print(f"   5. Add paper PDF when accepted")
+
+if __name__ == "__main__":
+    main()

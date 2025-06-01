@@ -1,0 +1,210 @@
+[
+  {
+    "configuration": "Evolution Only",
+    "weights": {
+      "alpha": 1.0,
+      "beta": 0.0,
+      "gamma": 0.0
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Strong Evolution",
+    "weights": {
+      "alpha": 0.7,
+      "beta": 0.2,
+      "gamma": 0.1
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Evolution Memory",
+    "weights": {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "gamma": 0.0
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Evolution Emphasis",
+    "weights": {
+      "alpha": 0.6,
+      "beta": 0.3,
+      "gamma": 0.1
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Memory Only",
+    "weights": {
+      "alpha": 0.0,
+      "beta": 1.0,
+      "gamma": 0.0
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Equal Weights",
+    "weights": {
+      "alpha": 0.33,
+      "beta": 0.33,
+      "gamma": 0.33
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Evolution Prediction",
+    "weights": {
+      "alpha": 0.5,
+      "beta": 0.0,
+      "gamma": 0.5
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "configuration": "Prediction Only",
+    "weights": {
+      "alpha": 0.0,
+      "beta": 0.0,
+      "gamma": 1.0
+    },
+    "early_detection_mean": 0.0,
+    "early_detection_std": 0.0,
+    "cold_start_mean": 0.0,
+    "cold_start_std": 0.0,
+    "early_detection_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cold_start_runs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+]

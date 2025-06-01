@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-06-01T14:17:57.917184",
+  "verification_status": "CORRECTED_GROUND_TRUTH_ESTABLISHED",
+  "original_paper_claims": {
+    "total_edges": 24186,
+    "total_users": 3783,
+    "suspicious_users": 73
+  },
+  "corrected_claims": {
+    "dataset": "Bitcoin Alpha only",
+    "total_edges": 24186,
+    "total_users": 3783,
+    "suspicious_users": 9,
+    "negative_threshold": 0.3,
+    "min_interactions": 5,
+    "original_paper_claim": 73,
+    "discrepancy_noted": true
+  },
+  "discrepancy_analysis": {
+    "suspicious_users_discrepancy": {
+      "paper_claim": 73,
+      "actual_data": 9,
+      "difference_factor": 8.11111111111111,
+      "explanation": "Paper claim appears to be incorrect based on stated methodology"
+    },
+    "verified_data_matches": {
+      "edges_verified": true,
+      "users_verified": true,
+      "methodology_applied_correctly": true
+    }
+  },
+  "suspicious_users_list": [
+    7568,
+    7558,
+    3369,
+    7388,
+    1292,
+    2257,
+    430,
+    7520,
+    7571
+  ],
+  "recommendation": "Proceed with corrected ground truth (9 suspicious users)",
+  "next_phase": "PHASE 2: Baseline Implementation with corrected data"
+}

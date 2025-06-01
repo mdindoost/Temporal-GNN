@@ -1,0 +1,219 @@
+{
+  "timestamp": "2025-06-01T17:51:57.569884",
+  "verification_type": "TABLE_5_COMPONENT_ANALYSIS_FIX",
+  "original_issue": "Evolution Only: 0.360\u00b10.434 (std > mean anomaly)",
+  "experiment_setup": {
+    "configurations_tested": 8,
+    "seeds_per_config": 5,
+    "total_experiments": 40,
+    "ground_truth_users": 73
+  },
+  "corrected_results": {
+    "Evolution Only": {
+      "config_weights": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "early_detection_mean": 1.0,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.0,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cold_start_results": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "Strong Evolution": {
+      "config_weights": [
+        0.7,
+        0.2,
+        0.1
+      ],
+      "early_detection_mean": 1.0,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.3,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cold_start_results": [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    "Evolution Memory": {
+      "config_weights": [
+        0.5,
+        0.5,
+        0.0
+      ],
+      "early_detection_mean": 0.8,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.3,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8
+      ],
+      "cold_start_results": [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    "Evolution Emphasis": {
+      "config_weights": [
+        0.6,
+        0.3,
+        0.1
+      ],
+      "early_detection_mean": 1.0,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.3,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cold_start_results": [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    "Memory Only": {
+      "config_weights": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "early_detection_mean": 0.7,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.5,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ],
+      "cold_start_results": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "Equal Weights": {
+      "config_weights": [
+        0.3,
+        0.3,
+        0.3
+      ],
+      "early_detection_mean": 0.8,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.4,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8
+      ],
+      "cold_start_results": [
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "Evolution Prediction": {
+      "config_weights": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "early_detection_mean": 1.0,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.5,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cold_start_results": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "Prediction Only": {
+      "config_weights": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "early_detection_mean": 0.4,
+      "early_detection_std": 0.0,
+      "cold_start_mean": 0.8,
+      "cold_start_std": 0.0,
+      "early_detection_results": [
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.4
+      ],
+      "cold_start_results": [
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8
+      ]
+    }
+  },
+  "paper_comparisons": {
+    "Evolution Only": {
+      "early_detection": {
+        "actual": "1.000 \u00b1 0.000",
+        "paper": "0.360 \u00b1 0.434",
+        "difference": 0.64,
+        "match": 

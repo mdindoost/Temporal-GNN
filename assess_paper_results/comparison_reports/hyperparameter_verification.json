@@ -1,0 +1,26 @@
+{
+  "claimed_parameters": {
+    "node_feature_dim": 16,
+    "hidden_dim": 64,
+    "embedding_dim": 32,
+    "learning_rate": 0.01,
+    "epochs": 50,
+    "validation_split": 0.2,
+    "gradient_clip_norm": 1.0,
+    "regularization_weight": 0.001,
+    "lambda_1": 0.5,
+    "lambda_2": 0.3,
+    "lambda_3": 0.2
+  },
+  "actual_parameters": {
+    "node_feature_dim": 16,
+    "hidden_dim": 64,
+    "embedding_dim": 32,
+    "learning_rate": 0.01,
+    "epochs": 50,
+    "validation_split": 0.2,
+    "gradient_clip_norm": 1.0,
+    "regularization_weight": 0.001
+  },
+  "verification_timestamp": "2025-06-01T12:12:00.219517"
+}

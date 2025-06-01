@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-06-01T17:43:39.914502",
+  "verification_type": "FINAL_VERIFICATION_WITH_EXACT_METHODOLOGY",
+  "methodology_source": "bitcoin_baseline_comparison.py (discovered implementation)",
+  "ground_truth": {
+    "criteria": {
+      "negative_threshold": 0.3,
+      "min_interactions": 5,
+      "rating_condition": "rating < 0"
+    },
+    "suspicious_users_found": 73,
+    "matches_paper_claim_73": true
+  },
+  "table1_verification_results": {
+    "negative_ratio": {
+      "separation_ratio": 25.079145528872786,
+      "precision_at_50": 0.46,
+      "paper_separation": 25.08,
+      "paper_precision": 0.46,
+      "separation_match": 

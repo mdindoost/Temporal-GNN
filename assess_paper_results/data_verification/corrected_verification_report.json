@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-06-01T13:56:49.737340",
+  "paper_claims": {
+    "total_edges": 24186,
+    "total_users": 3783,
+    "suspicious_users": 73,
+    "negative_threshold": 0.3,
+    "min_interactions": 5
+  },
+  "scenario_results": {
+    "alpha_only": {
+      "dataset": "alpha_only",
+      "total_edges": 24186,
+      "total_users": 3783,
+      "suspicious_users": 9,
+      "edges_match": true,
+      "users_match": true,
+      "suspicious_match": false,
+      "overall_match": false,
+      "top_suspicious": [
+        {
+          "user_id": 

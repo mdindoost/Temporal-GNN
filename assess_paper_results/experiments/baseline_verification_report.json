@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-06-01T17:05:31.825070",
+  "phase": "PHASE_2_BASELINE_VERIFICATION",
+  "ground_truth_source": "corrected_ground_truth_report.json",
+  "table1_verification_results": {
+    "negative_ratio": {
+      "method": "Negative Ratio",
+      "separation_ratio": 17.80751868621504,
+      "precision_at_50": 0.04,
+      "paper_separation": 25.08,
+      "paper_precision": 0.46,
+      "separation_match": false,
+      "precision_match": false,
+      "overall_match": false
+    },
+    "temporal_volatility": {
+      "method": "Temporal Volatility",
+      "separation_ratio": 4.100157774222805,
+      "precision_at_50": 0.0,
+      "paper_separation": 2.46,
+      "paper_precision": 0.58,
+      "separation_match": false,
+      "precision_match": false,
+      "overall_match": false
+    },
+    "weighted_pagerank": {
+      "method": "Weighted PageRank",
+      "separation_ratio": 7.656713441138019,
+      "precision_at_50": 0.0,
+      "paper_separation": 2.15,
+      "paper_precision": 0.28,
+      "separation_match": false,
+      "precision_match": false,
+      "overall_match": false
+    }
+  },
+  "verification_summary": {
+    "total_methods": 3,
+    "perfect_matches": 0,
+    "overall_verification_status": "DISCREPANCIES_FOUND"
+  },
+  "next_phase": "PHASE_3_COMPONENT_ANALYSIS"
+}

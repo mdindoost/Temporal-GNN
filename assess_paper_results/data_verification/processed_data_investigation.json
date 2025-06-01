@@ -1,0 +1,84 @@
+{
+  "timestamp": "2025-06-01T17:14:37.764391",
+  "investigation_type": "PROCESSED_DATA_ANALYSIS",
+  "paper_claims": {
+    "total_edges": 24186,
+    "total_users": 3783,
+    "suspicious_users": 73
+  },
+  "file_analysis": {
+    "bitcoin_alpha_processed.csv": {
+      "type": "edge_data",
+      "total_edges": 24186,
+      "unique_users": 3783,
+      "suspicious_users": 9,
+      "edges_match": true,
+      "users_match": true,
+      "potential_paper_dataset": true,
+      "columns": [
+        "source",
+        "target",
+        "rating",
+        "timestamp",
+        "datetime",
+        "source_idx",
+        "target_idx",
+        "month"
+      ]
+    },
+    "bitcoin_otc_processed.csv": {
+      "type": "edge_data",
+      "total_edges": 35592,
+      "unique_users": 5881,
+      "suspicious_users": 0,
+      "edges_match": false,
+      "users_match": false,
+      "potential_paper_dataset": false,
+      "columns": [
+        "source",
+        "target",
+        "rating",
+        "timestamp",
+        "datetime",
+        "source_idx",
+        "target_idx",
+        "month"
+      ]
+    },
+    "bitcoin_alpha_node_mapping.csv": {
+      "type": "mapping_data",
+      "total_edges": 0,
+      "unique_users": 0,
+      "suspicious_users": 0,
+      "edges_match": false,
+      "users_match": false,
+      "potential_paper_dataset": false,
+      "columns": [
+        "original_id",
+        "node_idx"
+      ]
+    },
+    "bitcoin_otc_node_mapping.csv": {
+      "type": "mapping_data",
+      "total_edges": 0,
+      "unique_users": 0,
+      "suspicious_users": 0,
+      "edges_match": false,
+      "users_match": false,
+      "potential_paper_dataset": false,
+      "columns": [
+        "original_id",
+        "node_idx"
+      ]
+    }
+  },
+  "potential_matches": [
+    {
+      "filename": "bitcoin_alpha_processed.csv",
+      "edges": 24186,
+      "users": 3783,
+      "suspicious_users": 9
+    }
+  ],
+  "recommendation": "Use bitcoin_alpha_processed.csv as paper dataset"
+}
