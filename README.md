@@ -72,7 +72,7 @@ TempAnom-GNN Components:
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/[your-username]/temporal-gnn-project.git
+git clone https://github.com/mdindoost/temporal-gnn-project.git
 cd temporal-gnn-project
 ```
 
@@ -272,7 +272,7 @@ def bootstrap_evaluation(scores, labels, n_samples=30):
 If you use this code in your research, please cite our paper:
 
 ```bibtex
-@inproceedings{dindoost2025tempanom,
+@inproceedings{,
   title={TempAnom-GNN: Temporal Graph Neural Networks for Real-time Fraud Detection in Dynamic Networks},
   author={Dindoost, Mohammad and [Co-authors]},
   booktitle={Proceedings of [Conference]},
@@ -306,7 +306,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Author**: Mohammad Dindoost  
 - **Email**: md724@njit.edu
 - **Institution**: New Jersey Institute of Technology
-- **GitHub**: [@your-username](https://github.com/your-username)
+- **GitHub**: [@mdindoost](https://github.com/mdindoost)
 
 ---
 
