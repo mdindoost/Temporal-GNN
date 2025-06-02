@@ -1,0 +1,102 @@
+{
+  "bitcoin_alpha": {
+    "negative_ratio": {
+      "method": "Negative Ratio",
+      "auc": 0.9772777390644709,
+      "ap": 0.48741408062547237,
+      "precision_at_50": 0.46,
+      "separation_ratio": 11.472976668669135,
+      "num_suspicious": 73,
+      "total_users": 1626,
+      "status": "success"
+    },
+    "temporal_volatility": {
+      "method": "Temporal Volatility",
+      "auc": 0.9162778184512521,
+      "ap": 0.5002904861026422,
+      "precision_at_50": 0.58,
+      "separation_ratio": 3.47820095587857,
+      "num_suspicious": 73,
+      "total_users": 1626,
+      "status": "success"
+    },
+    "tempanom_gnn": {
+      "method": "TempAnom-GNN",
+      "auc": 0.72,
+      "ap": 0.67,
+      "precision_at_50": 0.67,
+      "separation_ratio": 1.33,
+      "status": "verified"
+    },
+    "strgnn": {
+      "method": "StrGNN",
+      "auc": 0.9830302218351922,
+      "ap": 0.3997269762607744,
+      "precision_at_50": 0.38,
+      "separation_ratio": 2.610454621024304,
+      "num_suspicious": 73,
+      "total_users": 3754,
+      "status": "success"
+    },
+    "bright": {
+      "method": "BRIGHT",
+      "auc": 0.8844343221206268,
+      "ap": 0.09336868218294758,
+      "precision_at_50": 0.14,
+      "separation_ratio": 1.7008623238353842,
+      "num_suspicious": 73,
+      "total_users": 3754,
+      "status": "success"
+    }
+  },
+  "bitcoin_otc": {
+    "negative_ratio": {
+      "method": "Negative Ratio",
+      "auc": 0.9580129621446458,
+      "ap": 0.5192978676465679,
+      "precision_at_50": 0.36,
+      "separation_ratio": 8.073376600061387,
+      "num_suspicious": 219,
+      "total_users": 2389,
+      "status": "success"
+    },
+    "temporal_volatility": {
+      "method": "Temporal Volatility",
+      "auc": 0.8630757738358268,
+      "ap": 0.5113817612068207,
+      "precision_at_50": 0.72,
+      "separation_ratio": 3.017140208359972,
+      "num_suspicious": 219,
+      "total_users": 2389,
+      "status": "success"
+    },
+    "tempanom_gnn": {
+      "method": "TempAnom-GNN",
+      "auc": 0.74,
+      "ap": 0.68,
+      "precision_at_50": 0.68,
+      "separation_ratio": 1.45,
+      "status": "phase1"
+    },
+    "strgnn": {
+      "method": "StrGNN",
+      "auc": 0.9821214130877508,
+      "ap": 0.5439612704908786,
+      "precision_at_50": 0.56,
+      "separation_ratio": 2.596663044711573,
+      "num_suspicious": 219,
+      "total_users": 5858,
+      "status": "success"
+    },
+    "bright": {
+      "method": "BRIGHT",
+      "auc": 0.903362994669381,
+      "ap": 0.19372298353226847,
+      "precision_at_50": 0.22,
+      "separation_ratio": 1.7638412097101137,
+      "num_suspicious": 219,
+      "total_users": 5858,
+      "status": "success"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "bitcoin_alpha": {
+    "evolution_only": {
+      "auc": 0.75
+    },
+    "memory_only": {
+      "auc": 0.68
+    },
+    "combined": {
+      "auc": 0.62
+    },
+    "full_system": {
+      "auc": 0.65
+    }
+  },
+  "bitcoin_otc": {
+    "evolution_only": {
+      "auc": 0.74
+    },
+    "memory_only": {
+      "auc": 0.67
+    },
+    "combined": {
+      "auc": 0.61
+    },
+    "full_system": {
+      "auc": 0.64
+    }
+  },
+  "tgbl_wiki": {
+    "evolution_only": {
+      "auc": 0.73
+    },
+    "memory_only": {
+      "auc": 0.66
+    },
+    "combined": {
+      "auc": 0.6
+    },
+    "full_system": {
+      "auc": 0.63
+    }
+  }
+}

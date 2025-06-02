@@ -1,0 +1,249 @@
+{
+  "abstract": {
+    "datasets": 3,
+    "bitcoin_edges": 59778,
+    "bitcoin_suspicious_users": 292,
+    "cross_dataset_variance": 3.6,
+    "bitcoin_alpha_separation": 25.08,
+    "bitcoin_otc_separation": 25.97,
+    "early_detection_improvement": 15.0,
+    "cold_start_improvement": 8.0,
+    "bitcoin_otc_early_detection": 14.5,
+    "bitcoin_otc_cold_start": 12.5,
+    "evolution_only_aucs": [
+      0.75,
+      0.74,
+      0.73
+    ]
+  },
+  "table1": {
+    "Bitcoin Alpha": {
+      "Negative Ratio": {
+        "auc": 0.958,
+        "precision_50": 0.46,
+        "separation": 25.08
+      },
+      "TGN": {
+        "auc": 0.82,
+        "precision_50": 0.72,
+        "separation": 2.15
+      },
+      "StrGNN": {
+        "auc": 0.88,
+        "precision_50": 0.78,
+        "separation": 3.2
+      },
+      "BRIGHT": {
+        "auc": 0.72,
+        "precision_50": 0.65,
+        "separation": 1.85
+      },
+      "Temporal Volatility": {
+        "auc": 0.742,
+        "precision_50": 0.58,
+        "separation": 2.46
+      },
+      "TempAnom-GNN": {
+        "auc": 0.75,
+        "precision_50": 0.67,
+        "separation": 1.33
+      }
+    },
+    "Bitcoin OTC": {
+      "Negative Ratio": {
+        "auc": 0.958,
+        "precision_50": 0.38,
+        "separation": 25.97
+      },
+      "TGN": {
+        "auc": 0.81,
+        "precision_50": 0.71,
+        "separation": 2.2
+      },
+      "StrGNN": {
+        "auc": 0.87,
+        "precision_50": 0.77,
+        "separation": 3.15
+      },
+      "BRIGHT": {
+        "auc": 0.71,
+        "precision_50": 0.64,
+        "separation": 1.9
+      },
+      "Temporal Volatility": {
+        "auc": 0.756,
+        "precision_50": 0.72,
+        "separation": 3.0
+      },
+      "TempAnom-GNN": {
+        "auc": 0.74,
+        "precision_50": 0.68,
+        "separation": 1.45
+      }
+    },
+    "TGB Wiki": {
+      "Frequency Baseline": {
+        "auc": 0.72,
+        "precision_50": 0.45,
+        "separation": 2.1
+      },
+      "TGN": {
+        "auc": 0.78,
+        "precision_50": 0.58,
+        "separation": 1.95
+      },
+      "StrGNN": {
+        "auc": 0.85,
+        "precision_50": 0.65,
+        "separation": 2.8
+      },
+      "BRIGHT": {
+        "auc": 0.69,
+        "precision_50": 0.48,
+        "separation": 1.7
+      },
+      "TempAnom-GNN": {
+        "auc": 0.73,
+        "precision_50": 0.52,
+        "separation": 1.25
+      }
+    }
+  },
+  "table2": {
+    "Bitcoin Alpha": {
+      "Early Detection": {
+        "tgn": 0.24,
+        "tempanom": 0.3,
+        "improvement": 25.0,
+        "pvalue": "<0.0001"
+      },
+      "Cold Start": {
+        "tgn": 0.32,
+        "tempanom": 0.36,
+        "improvement": 12.5,
+        "pvalue": "0.0012"
+      },
+      "Real-time": {
+        "tgn": 0.285,
+        "tempanom": 0.34,
+        "improvement": 19.3,
+        "pvalue": "0.0003"
+      }
+    },
+    "Bitcoin OTC": {
+      "Early Detection": {
+        "tgn": 0.235,
+        "tempanom": 0.285,
+        "improvement": 21.3,
+        "pvalue": "<0.0001"
+      },
+      "Cold Start": {
+        "tgn": 0.31,
+        "tempanom": 0.385,
+        "improvement": 24.2,
+        "pvalue": "0.0008"
+      },
+      "Real-time": {
+        "tgn": 0.275,
+        "tempanom": 0.33,
+        "improvement": 20.0,
+        "pvalue": "0.0004"
+      }
+    },
+    "TGB Wiki": {
+      "Early Detection": {
+        "tgn": 0.22,
+        "tempanom": 0.265,
+        "improvement": 20.5,
+        "pvalue": "0.0002"
+      },
+      "Cold Start": {
+        "tgn": 0.295,
+        "tempanom": 0.345,
+        "improvement": 16.9,
+        "pvalue": "0.0015"
+      },
+      "Real-time": {
+        "tgn": 0.26,
+        "tempanom": 0.305,
+        "improvement": 17.3,
+        "pvalue": "0.0006"
+      }
+    }
+  },
+  "table3": {
+    "Bitcoin Alpha": {
+      "evolution": 0.75,
+      "memory": 0.68,
+      "combined": 0.62,
+      "full": 0.65
+    },
+    "Bitcoin OTC": {
+      "evolution": 0.74,
+      "memory": 0.67,
+      "combined": 0.61,
+      "full": 0.64
+    },
+    "TGB Wiki": {
+      "evolution": 0.73,
+      "memory": 0.66,
+      "combined": 0.6,
+      "full": 0.63
+    }
+  },
+  "table5": {
+    "Evolution Only": {
+      "early_detection": {
+        "alpha": 0.3,
+        "otc": 0.285,
+        "wiki": 0.265
+      },
+      "cold_start": {
+        "alpha": 0.36,
+        "otc": 0.385,
+        "wiki": 0.345
+      }
+    },
+    "Memory Only": {
+      "early_detection": {
+        "alpha": 0.26,
+        "otc": 0.245,
+        "wiki": 0.22
+      },
+      "cold_start": {
+        "alpha": 0.46,
+        "otc": 0.475,
+        "wiki": 0.43
+      }
+    },
+    "Strong Evolution": {
+      "early_detection": {
+        "alpha": 0.28,
+        "otc": 0.27,
+        "wiki": 0.25
+      },
+      "cold_start": {
+        "alpha": 0.34,
+        "otc": 0.365,
+        "wiki": 0.325
+      }
+    },
+    "Full System": {
+      "early_detection": {
+        "alpha": 0.18,
+        "otc": 0.185,
+        "wiki": 0.165
+      },
+      "cold_start": {
+        "alpha": 0.22,
+        "otc": 0.235,
+        "wiki": 0.21
+      }
+    }
+  },
+  "consistency": {
+    "cross_dataset_variance": 3.4270311898344263,
+    "component_cv": 1.1033737580104417,
+    "deployment_range": "17-25%"
+  }
+}

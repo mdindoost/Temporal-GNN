@@ -1,0 +1,29 @@
+{
+  "bitcoin_alpha": {
+    "negative_ratio": {
+      "separation_ratio": 25.08,
+      "precision_at_50": 0.46
+    },
+    "tempanom_gnn": {
+      "separation_ratio": 1.33,
+      "precision_at_50": 0.67
+    }
+  },
+  "bitcoin_otc": {
+    "negative_ratio": {
+      "method": "negative_ratio",
+      "separation_ratio": 25.965156213858556,
+      "auc_score": 0.9580129621446458,
+      "suspicious_detected": 19,
+      "total_ground_truth": 219,
+      "precision_at_20": 0.2,
+      "precision_at_50": 0.38,
+      "precision_at_100": 0.59
+    },
+    "tempanom_gnn": {
+      "separation_ratio": 1.45,
+      "precision_at_50": 0.68,
+      "auc_score": 0.74
+    }
+  }
+}

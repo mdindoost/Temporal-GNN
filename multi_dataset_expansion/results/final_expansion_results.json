@@ -1,0 +1,83 @@
+{
+  "bitcoin_alpha": {
+    "negative_ratio": {
+      "auc": 0.958,
+      "separation_ratio": 25.08,
+      "precision_at_50": 0.46
+    },
+    "tempanom_gnn": {
+      "auc": 0.75,
+      "separation_ratio": 1.33,
+      "precision_at_50": 0.67
+    },
+    "tgn": {
+      "auc": 0.82,
+      "separation_ratio": 2.15,
+      "precision_at_50": 0.72
+    },
+    "strgnn": {
+      "auc": 0.88,
+      "separation_ratio": 3.2,
+      "precision_at_50": 0.78
+    },
+    "bright": {
+      "auc": 0.72,
+      "separation_ratio": 1.85,
+      "precision_at_50": 0.65
+    }
+  },
+  "bitcoin_otc": {
+    "negative_ratio": {
+      "auc": 0.958,
+      "separation_ratio": 25.97,
+      "precision_at_50": 0.38
+    },
+    "tempanom_gnn": {
+      "auc": 0.74,
+      "separation_ratio": 1.45,
+      "precision_at_50": 0.68
+    },
+    "tgn": {
+      "auc": 0.81,
+      "separation_ratio": 2.2,
+      "precision_at_50": 0.71
+    },
+    "strgnn": {
+      "auc": 0.87,
+      "separation_ratio": 3.15,
+      "precision_at_50": 0.77
+    },
+    "bright": {
+      "auc": 0.71,
+      "separation_ratio": 1.9,
+      "precision_at_50": 0.64
+    }
+  },
+  "tgbl_wiki": {
+    "frequency_baseline": {
+      "auc": 0.72,
+      "separation_ratio": 2.1,
+      "precision_at_50": 0.45
+    },
+    "tempanom_gnn": {
+      "auc": 0.73,
+      "separation_ratio": 1.25,
+      "precision_at_50": 0.52
+    },
+    "tgn": {
+      "auc": 0.78,
+      "separation_ratio": 1.95,
+      "precision_at_50": 0.58
+    },
+    "strgnn": {
+      "auc": 0.85,
+      "separation_ratio": 2.8,
+      "precision_at_50": 0.65
+    },
+    "bright": {
+      "auc": 0.69,
+      "separation_ratio": 1.7,
+      "precision_at_50": 0.48
+    }
+  }
+}
