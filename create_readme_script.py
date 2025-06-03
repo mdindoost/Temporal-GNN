@@ -1,4 +1,16 @@
-# TempAnom-GNN: Temporal Graph Neural Networks for Real-time Anomaly Detection
+#!/usr/bin/env python3
+"""
+Create README.md File for TempAnom-GNN Repository
+This script generates a comprehensive README.md file with all documentation
+"""
+
+import os
+from datetime import datetime
+
+def create_readme():
+    """Create comprehensive README.md file"""
+    
+    readme_content = '''# TempAnom-GNN: Temporal Graph Neural Networks for Real-time Anomaly Detection
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.7+-red.svg)](https://pytorch.org/)
@@ -205,11 +217,11 @@ with open('multi_dataset_expansion/results/component_analysis.json', 'r') as f:
     components = json.load(f)
 
 for dataset, results in components.items():
-    print(f'\n{dataset.upper()}:')
+    print(f'\\n{dataset.upper()}:')
     sorted_components = sorted(results.items(), key=lambda x: x[1]['auc'], reverse=True)
     for i, (comp, metrics) in enumerate(sorted_components):
         marker = '🏆' if i == 0 else '  '
-        print(f'{marker} {comp}: {metrics["auc"]:.3f} AUC')
+        print(f'{marker} {comp}: {metrics[\"auc\"]:.3f} AUC')
 "
 
 # Expected: Evolution-only dominance across all datasets
@@ -248,7 +260,7 @@ def validate_ground_truth(dataset_path, expected_count):
 alpha_valid = validate_ground_truth('data/processed/bitcoin_alpha_processed.csv', 73)
 otc_valid = validate_ground_truth('data/processed/bitcoin_otc_processed.csv', 219)
 
-print(f'\nValidation: {"✅ PASSED" if alpha_valid and otc_valid else "❌ FAILED"}')
+print(f'\\nValidation: {\"✅ PASSED\" if alpha_valid and otc_valid else \"❌ FAILED\"}')
 "
 
 # Expected output:
@@ -425,4 +437,347 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**🚀 Ready to reproduce our results? Start with the Quick Start guide above!**
+**🚀 Ready to reproduce our results? Start with the Quick Start guide above!**'''
+    
+    return readme_content
+
+def create_license():
+    """Create MIT License file"""
+    
+    license_content = '''MIT License
+
+Copyright (c) 2025 [Your Name]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.'''
+    
+    return license_content
+
+def create_requirements():
+    """Create requirements.txt file"""
+    
+    requirements_content = '''torch==2.7.0+cu118
+torch-geometric==2.6.1
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.1.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+networkx>=2.8.0
+torch-geometric-temporal
+py-tgb'''
+    
+    return requirements_content
+
+def create_gitignore():
+    """Create .gitignore file"""
+    
+    gitignore_content = '''# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch
+*.pth
+*.pt
+checkpoint/
+checkpoints/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+temporal-gnn-env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Data (optional - uncomment if you don't want to track data)
+# data/
+# *.csv
+# *.pkl
+# *.json
+
+# Results (optional - uncomment if you don't want to track results)
+# results/
+# multi_dataset_expansion/results/
+
+# SLURM
+slurm-*.out
+slurm-*.err
+
+# Temporary files
+tmp/
+temp/
+.tmp/'''
+    
+    return gitignore_content
+
+def main():
+    """Main function to create all documentation files"""
+    
+    print("🚀 CREATING README AND DOCUMENTATION FILES")
+    print("=" * 50)
+    
+    # Define base path
+    base_path = "/home/md724/temporal-gnn-project"
+    
+    # Ensure we're in the right directory
+    if not os.path.exists(base_path):
+        print(f"❌ Base path not found: {base_path}")
+        print("   Creating directory structure...")
+        os.makedirs(base_path, exist_ok=True)
+    
+    # Change to project directory
+    os.chdir(base_path)
+    print(f"📁 Working in: {os.getcwd()}")
+    
+    # Create files
+    files_to_create = [
+        ("README.md", create_readme()),
+        ("LICENSE", create_license()),
+        ("requirements.txt", create_requirements()),
+        (".gitignore", create_gitignore())
+    ]
+    
+    for filename, content in files_to_create:
+        try:
+            with open(filename, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"✅ Created: {filename}")
+        except Exception as e:
+            print(f"❌ Failed to create {filename}: {e}")
+    
+    # Create additional verification script
+    verification_script = '''#!/usr/bin/env python3
+"""
+Quick Repository Verification Script
+Run this to verify your repository setup
+"""
+
+import os
+import sys
+
+def verify_repository():
+    """Verify repository structure and key files"""
+    
+    print("🔍 REPOSITORY VERIFICATION")
+    print("=" * 30)
+    
+    # Check key files
+    key_files = [
+        "README.md",
+        "LICENSE", 
+        "requirements.txt",
+        "temporal_anomaly_detector.py",
+        "bitcoin_baseline_comparison.py",
+        "set_temporal_gnn"
+    ]
+    
+    print("\\n📁 Key Files:")
+    missing_files = []
+    
+    for file in key_files:
+        if os.path.exists(file):
+            size = os.path.getsize(file)
+            print(f"   ✅ {file} ({size:,} bytes)")
+        else:
+            print(f"   ❌ {file} (missing)")
+            missing_files.append(file)
+    
+    # Check directories
+    key_dirs = [
+        "data/processed",
+        "multi_dataset_expansion/results",
+        "logs",
+        "src"
+    ]
+    
+    print("\\n📂 Key Directories:")
+    missing_dirs = []
+    
+    for dir_path in key_dirs:
+        if os.path.exists(dir_path):
+            files_count = len(os.listdir(dir_path)) if os.path.isdir(dir_path) else 0
+            print(f"   ✅ {dir_path}/ ({files_count} items)")
+        else:
+            print(f"   ❌ {dir_path}/ (missing)")
+            missing_dirs.append(dir_path)
+    
+    # Check data integrity
+    print("\\n🔬 Data Integrity:")
+    
+    try:
+        import pandas as pd
+        
+        datasets = [
+            ("data/processed/bitcoin_alpha_processed.csv", 73),
+            ("data/processed/bitcoin_otc_processed.csv", 219)
+        ]
+        
+        for dataset_path, expected_suspicious in datasets:
+            if os.path.exists(dataset_path):
+                df = pd.read_csv(dataset_path)
+                print(f"   ✅ {dataset_path}: {len(df)} edges")
+                
+                # Quick ground truth check
+                from collections import defaultdict
+                user_stats = defaultdict(lambda: {'total': 0, 'negative': 0})
+                for _, row in df.iterrows():
+                    target = row['target_idx']
+                    user_stats[target]['total'] += 1
+                    if row['rating'] < 0:
+                        user_stats[target]['negative'] += 1
+                
+                suspicious_users = set()
+                for user, stats in user_stats.items():
+                    if stats['total'] >= 5 and stats['negative'] / stats['total'] > 0.3:
+                        suspicious_users.add(user)
+                
+                actual_count = len(suspicious_users)
+                if actual_count == expected_suspicious:
+                    print(f"      ✅ Ground truth: {actual_count} suspicious users")
+                else:
+                    print(f"      ⚠️  Ground truth: {actual_count} (expected {expected_suspicious})")
+            else:
+                print(f"   ❌ {dataset_path}: Not found")
+                
+    except ImportError:
+        print("   ⚠️  pandas not available - skipping data checks")
+    except Exception as e:
+        print(f"   ❌ Data check error: {e}")
+    
+    # Check results
+    print("\\n📊 Results:")
+    
+    results_file = "multi_dataset_expansion/results/final_expansion_results.json"
+    if os.path.exists(results_file):
+        try:
+            import json
+            with open(results_file, 'r') as f:
+                results = json.load(f)
+            
+            datasets_count = len(results)
+            methods_count = len(results[list(results.keys())[0]]) if results else 0
+            
+            print(f"   ✅ Results available: {datasets_count} datasets, {methods_count} methods")
+            
+            # Check key findings
+            if 'bitcoin_alpha' in results and 'bitcoin_otc' in results:
+                alpha_sep = results['bitcoin_alpha'].get('negative_ratio', {}).get('separation_ratio', 0)
+                otc_sep = results['bitcoin_otc'].get('negative_ratio', {}).get('separation_ratio', 0)
+                
+                if alpha_sep > 20 and otc_sep > 20:
+                    consistency = abs(alpha_sep - otc_sep) / max(alpha_sep, otc_sep) * 100
+                    print(f"   ✅ Cross-dataset consistency: {consistency:.1f}% difference")
+                else:
+                    print(f"   ⚠️  Separation ratios seem low: {alpha_sep:.1f}×, {otc_sep:.1f}×")
+            
+        except Exception as e:
+            print(f"   ❌ Results check error: {e}")
+    else:
+        print(f"   ⚠️  Results not found - run expansion first")
+    
+    # Summary
+    print("\\n🎯 VERIFICATION SUMMARY:")
+    
+    if not missing_files and not missing_dirs:
+        print("   ✅ Repository structure complete")
+    else:
+        print("   ⚠️  Some files/directories missing")
+        if missing_files:
+            print(f"      Missing files: {', '.join(missing_files)}")
+        if missing_dirs:
+            print(f"      Missing dirs: {', '.join(missing_dirs)}")
+    
+    print("\\n🚀 Next steps:")
+    print("   1. Run: source set_temporal_gnn")
+    print("   2. Run: cd multi_dataset_expansion && sbatch run_tgb_expansion.slurm")
+    print("   3. Check: multi_dataset_expansion/results/")
+
+if __name__ == "__main__":
+    verify_repository()
+'''
+    
+    try:
+        with open("verify_repository.py", 'w', encoding='utf-8') as f:
+            f.write(verification_script)
+        print(f"✅ Created: verify_repository.py")
+    except Exception as e:
+        print(f"❌ Failed to create verify_repository.py: {e}")
+    
+    print(f"\n🎉 DOCUMENTATION CREATION COMPLETED!")
+    print("=" * 40)
+    print(f"📁 Files created in: {base_path}")
+    print("   ✅ README.md (comprehensive documentation)")
+    print("   ✅ LICENSE (MIT license)")
+    print("   ✅ requirements.txt (dependencies)")
+    print("   ✅ .gitignore (version control)")
+    print("   ✅ verify_repository.py (verification script)")
+    
+    print(f"\n📋 Next Steps:")
+    print("   1. Review README.md and customize placeholders")
+    print("   2. Run: python verify_repository.py")
+    print("   3. Test installation instructions")
+    print("   4. Update contact information in README.md")
+    
+    # Show file sizes
+    print(f"\n📊 File Sizes:")
+    for filename, _ in files_to_create + [("verify_repository.py", "")]:
+        if os.path.exists(filename):
+            size = os.path.getsize(filename)
+            print(f"   {filename}: {size:,} bytes")
+
+if __name__ == "__main__":
+    main()

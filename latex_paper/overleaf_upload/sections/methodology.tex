@@ -1,0 +1,111 @@
+\section{Methodology}
+\label{sec:methodology}
+
+}
+# 3. Methodology
+
+\subsection{3.1 Problem Formulation
+
+\textbf{Temporal Graph Anomaly Detection\textbf{: Given a temporal graph $G = \{G_1, G_2, ..., G_T\}$ where $G_t = (V_t, E_t, X_t)$ represents the graph at time $t$ with nodes $V_t$, edges $E_t$, and node features $X_t$, our goal is to identify anomalous nodes in real-time as new interactions arrive.
+
+\textbf{Deployment Requirements\textbf{: Unlike retrospective analysis, real-time deployment requires:
+1. \textbf{Early Detection\textbf{: Identify anomalies with limited interaction history
+2. \textbf{Cold Start Handling\textbf{: Evaluate new nodes with minimal data
+3. \textbf{Temporal Consistency\textbf{: Maintain stable performance across time periods
+4. \textbf{Real-time Processing\textbf{: Process streaming graph updates efficiently
+
+\subsection{3.2 TempAnom-GNN Architecture
+
+Our architecture integrates three components optimized for deployment scenarios:
+
+#\subsection{3.2.1 Temporal Evolution Encoder
+
+\textbf{Motivation\textbf{: Captures fine-grained temporal patterns that emerge before statistical anomalies become apparent.
+
+\textbf{Design\textbf{: Building on DyRep [13], we encode temporal evolution through:
+
+$$h_v^{(t)} = \text{GRU}(h_v^{(t-1)}, \text{Aggregate}(\{m_{uv}^{(\tau)} : \tau \leq t\}))$$
+
+where $m_{uv}^{(\tau)}$ represents the message from node $u$ to $v$ at time $\tau$.
+
+\textbf{Deployment Advantage\textbf{: Temporal patterns often precede statistical anomalies, enabling early detection.
+
+#\subsection{3.2.2 Memory Mechanism
+
+\textbf{Motivation\textbf{: Maintains representations of normal behavior patterns for comparison with current activity.
+
+\textbf{Design\textbf{: Following TGN [12], we maintain memory states:
+
+$$\text{Memory}_v^{(t)} = \text{Update}(\text{Memory}_v^{(t-1)}, h_v^{(t)}, \text{is\_normal}(G_t))$$
+
+\textbf{Deployment Advantage\textbf{: Enables detection of deviations from established normal patterns.
+
+#\subsection{3.2.3 Trajectory Predictor
+
+\textbf{Motivation\textbf{: Predicts future interaction patterns to identify anomalous trajectories early.
+
+\textbf{Design\textbf{: Inspired by JODIE [14], we predict future embeddings:
+
+$$\hat{h}_v^{(t+\Delta)} = \text{MLP}(h_v^{(t)}, \Delta)$$
+
+\textbf{Deployment Advantage\textbf{: Trajectory deviations signal emerging anomalies before they fully manifest.
+
+#\subsection{3.2.4 Unified Anomaly Scoring
+
+\textbf{Integration\textbf{: We combine components through learned weights:
+
+$$\text{Score}_v^{(t)} = \alpha \cdot \text{EvolutionScore}_v^{(t)} + \beta \cdot \text{MemoryScore}_v^{(t)} + \gamma \cdot \text{TrajectoryScore}_v^{(t)}$$
+
+\textbf{Optimization\textbf{: Weights are learned through deployment-focused loss functions that prioritize early detection and cold start performance.
+
+\subsection{3.3 Training Strategy
+
+#\subsection{3.3.1 Deployment-Focused Loss Function
+
+Traditional anomaly detection optimizes for retrospective performance. We design loss functions specifically for deployment requirements:
+
+$$L = L_{\text{detection}} + \lambda_1 L_{\text{early}} + \lambda_2 L_{\text{coldstart}} + \lambda_3 L_{\text{consistency}}$$
+
+where:
+- $L_{\text{detection}}$: Standard anomaly detection loss
+- $L_{\text{early}}$: Early detection penalty (higher weight for early time steps)
+- $L_{\text{coldstart}}$: Cold start penalty (higher weight for nodes with limited data)
+- $L_{\text{consistency}}$: Temporal consistency regularization
+
+#\subsection{3.3.2 Temporal Batching Strategy
+
+\textbf{Challenge\textbf{: Traditional batching ignores temporal dependencies.
+
+\textbf{Solution\textbf{: We employ temporal batching that preserves chronological order:
+1. Sort interactions by timestamp
+2. Create temporal windows with overlap
+3. Ensure causality (no future information leakage)
+4. Maintain memory states across batches
+
+\subsection{3.4 Component Analysis Framework
+
+\textbf{Motivation\textbf{: Understanding which components contribute most to deployment performance.
+
+\textbf{Methodology\textbf{: We evaluate single-component variants:
+- \textbf{Evolution-only\textbf{: Temporal encoding without memory or prediction
+- \textbf{Memory-only\textbf{: Memory mechanism without evolution or prediction  
+- \textbf{Prediction-only\textbf{: Trajectory prediction without memory or evolution
+- \textbf{Full-system\textbf{: All components combined
+
+\textbf{Evaluation\textbf{: Each variant is tested on deployment scenarios (early detection, cold start) to identify optimal architectures.
+
+\subsection{3.5 Design Decisions for Deployment
+
+#\subsection{3.5.1 Scalability Considerations
+
+\textbf{Memory Efficiency\textbf{: Bounded memory states with periodic cleanup
+\textbf{Computational Efficiency\textbf{: Linear complexity in number of nodes
+\textbf{Update Efficiency\textbf{: Incremental updates for streaming data
+
+#\subsection{3.5.2 Robustness Measures
+
+\textbf{Temporal Stability\textbf{: Consistent performance across time periods
+\textbf{Data Quality\textbf{: Handling missing or noisy interaction data
+\textbf{Adaptation\textbf{: Mechanisms for evolving fraud patterns
+
+Our methodology prioritizes real-world deployment requirements while maintaining the representational power needed for effective anomaly detection. The component analysis framework provides actionable insights for practitioners deploying temporal graph methods.

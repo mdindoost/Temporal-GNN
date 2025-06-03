@@ -1,2 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch
+*.pth
+*.pt
+checkpoint/
+checkpoints/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+temporal-gnn-env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
 logs/
-latex_paper/
+*.log
+
+# Data (optional - uncomment if you don't want to track data)
+# data/
+# *.csv
+# *.pkl
+# *.json
+
+# Results (optional - uncomment if you don't want to track results)
+# results/
+# multi_dataset_expansion/results/
+
+# SLURM
+slurm-*.out
+slurm-*.err
+
+# Temporary files
+tmp/
+temp/
+.tmp/

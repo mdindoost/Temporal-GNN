@@ -1,0 +1,4 @@
+Scenario,Baseline,TempAnom-GNN,Improvement,95% CI,p-value,Significant
+Early Detection,0.333 ± 0.209,0.407 ± 0.262,0.208,"(0.171, 0.246)",0.0000,✓
+Cold Start,0.850 ± 0.213,0.923 ± 0.125,0.132,"(0.055, 0.209)",0.0017,✓
+Temporal Consistency,σ = 891.750,σ = 890.878,0.001,N/A,0.9970,✗

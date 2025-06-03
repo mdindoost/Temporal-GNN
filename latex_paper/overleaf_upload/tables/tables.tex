@@ -1,0 +1,53 @@
+% Main results table
+\begin{table*}[htbp]
+\centering
+\caption{Comprehensive evaluation results across retrospective analysis and deployment scenarios. TempAnom-GNN demonstrates significant advantages in deployment scenarios with statistical validation.}
+\label{tab:main_results}
+\begin{tabular}{llllll}
+\toprule
+\textbf{Evaluation Type} & \textbf{Method} & \textbf{Metric} & \textbf{Performance} & \textbf{Use Case} & \textbf{Notes} \\
+\midrule
+Retrospective & Negative Ratio & Separation Ratio & 25.08× & Historical analysis & Best for complete data \\
+Retrospective & TempAnom-GNN & Separation Ratio & 1.33× & Real-time deployment & Deployment-focused \\
+\midrule
+Early Detection & TempAnom-GNN & Improvement & +20.8\% (p < 0.001) & Prospective detection & 95\% CI: (0.171, 0.246) \\
+Cold Start & TempAnom-GNN & Improvement & +13.2\% (p < 0.01) & New user evaluation & 95\% CI: (0.055, 0.209) \\
+\midrule
+Component Analysis & Evolution Only & Precision@10 & 0.283 ± 0.162 & Architecture design & Best component for deployment \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% Baseline comparison table
+\begin{table}[htbp]
+\centering
+\caption{Baseline comparison on retrospective analysis showing separation ratios and precision metrics.}
+\label{tab:baseline}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Separation Ratio} & \textbf{Precision@50} \\
+\midrule
+Negative Ratio & 25.08× & 0.460 \\
+Temporal Volatility & 2.46× & 0.580 \\
+Weighted PageRank & 2.15× & 0.280 \\
+\textbf{TempAnom-GNN} & \textbf{1.33×} & \textbf{0.670} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Component analysis table
+\begin{table}[htbp]
+\centering
+\caption{Component analysis results showing performance across deployment scenarios.}
+\label{tab:components}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Early Detection} & \textbf{Cold Start} \\
+\midrule
+Evolution Only & 0.283 ± 0.162 & 0.773 ± 0.255 \\
+Prediction Only & 0.214 ± 0.112 & 0.748 ± 0.287 \\
+Memory Only & 0.239 ± 0.129 & 0.690 ± 0.293 \\
+Full System & 0.225 ± 0.132 & 0.699 ± 0.312 \\
+\bottomrule
+\end{tabular}
+\end{table}

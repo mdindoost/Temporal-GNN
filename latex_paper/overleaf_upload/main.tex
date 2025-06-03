@@ -1,0 +1,87 @@
+% TempAnom-GNN: Temporal Graph Neural Networks for Real-time Fraud Detection
+% KDD 2025 Submission
+
+\documentclass[sigconf,review]{acmart}
+
+% Packages
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{url}
+\usepackage{balance}
+
+% ACM metadata (update for final submission)
+\acmConference[KDD '25]{Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining}{August 2025}{Sydney, Australia}
+\acmBooktitle{Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '25)}
+\acmPrice{15.00}
+\acmDOI{10.1145/3394486.XXXXXXX}
+\acmISBN{978-1-4503-XXXX-X/25/08}
+
+% Copyright info (update for final submission)
+\setcopyright{acmcopyright}
+\copyrightyear{2025}
+
+% Title and authors
+\title{TempAnom-GNN: Temporal Graph Neural Networks for Real-time Fraud Detection in Dynamic Networks}
+
+% Authors (anonymized for review)
+\author{Anonymous Author(s)}
+\affiliation{%
+  \institution{Anonymous Institution}
+  \city{Anonymous City}
+  \country{Anonymous Country}
+}
+\email{anonymous@email.com}
+
+% Abstract
+\begin{abstract}
+While retrospective fraud analysis can be effectively handled by simple statistical methods, production fraud detection systems require prospective capabilities for early detection and new user evaluation. We present TempAnom-GNN, the first temporal graph neural network designed specifically for real-time anomaly detection in evolving networks. Our architecture integrates temporal evolution encoding, memory mechanisms, and trajectory prediction to capture both local patterns and global network dynamics. Through rigorous evaluation on Bitcoin trust networks containing 24,186 edges and 3,783 users, we demonstrate that while simple statistical baselines excel at retrospective analysis (25.08× separation ratio), TempAnom-GNN provides statistically significant advantages in realistic deployment scenarios: 20.8\% improvement in early detection (95\% CI: 0.171-0.246, $p < 0.0001$) and 13.2\% improvement for cold start users (95\% CI: 0.055-0.209, $p = 0.0017$). Component analysis on real fraud data reveals that evolution-only architectures outperform complex combinations, providing practical guidance for deployment. Our evaluation framework challenges retrospective-only benchmarking and demonstrates the importance of deployment-focused evaluation for temporal graph methods.
+\end{abstract}
+
+% Keywords
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010178.10010179</concept_id>
+<concept_desc>Computing methodologies~Machine learning</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010178.10010224</concept_id>
+<concept_desc>Computing methodologies~Neural networks</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Machine learning}
+\ccsdesc[300]{Computing methodologies~Neural networks}
+
+\keywords{Temporal Graph Neural Networks, Anomaly Detection, Fraud Detection, Real-time Systems, Bitcoin Networks}
+
+\begin{document}
+
+\maketitle
+
+% Input sections
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/methodology}
+\input{sections/experiments}
+\input{sections/analysis}
+\input{sections/conclusion}
+
+% Acknowledgments
+\begin{acks}
+We thank the reviewers for their constructive feedback and the Stanford SNAP team for providing the Bitcoin trust network datasets that enabled this research.
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}
