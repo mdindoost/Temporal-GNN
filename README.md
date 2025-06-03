@@ -36,7 +36,7 @@
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/mdindoost/Temporal-GNN
 cd temporal-gnn-project
 
 # Create and activate environment
@@ -390,8 +390,8 @@ sbatch my_analysis.slurm
 ```bibtex
 @inproceedings{tempanom-gnn-2025,
   title={TempAnom-GNN: Temporal Graph Neural Networks for Real-time Anomaly Detection},
-  author={[Your Name]},
-  booktitle={Proceedings of KDD 2025},
+  author={[]},
+  booktitle={Proceedings of 2025},
   year={2025}
 }
 ```
@@ -418,9 +418,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Author**: [Your Name]
-- **Email**: [your.email@domain.com]
-- **Institution**: [Your Institution]
+- **Author**: []
+- **Email**: []
+- **Institution**: []
 - **Paper**: [Link to paper when published]
 
 ---
